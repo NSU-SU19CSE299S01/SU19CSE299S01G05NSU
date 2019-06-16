@@ -38,5 +38,6 @@ I will promote third-party brands and products and charge them to place their of
 
 ---
 ## License & copyright
-© Md. Jahid Hasan Naiem, SU19CSE299S01G05NSU 
+© Md. Jahid Hasan Naiem, North South University
+
 Licensed under [MIT License](LICENSE).
