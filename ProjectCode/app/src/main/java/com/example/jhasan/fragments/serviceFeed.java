@@ -1,4 +1,4 @@
-package com.example.jhasan.Fragment;
+package com.example.jhasan.fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -13,12 +13,12 @@ import com.example.jhasan.soudagor.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link AddServcie.OnFragmentInteractionListener} interface
+ * {@link serviceFeed.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link AddServcie#newInstance} factory method to
+ * Use the {@link serviceFeed#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AddServcie extends Fragment {
+public class serviceFeed extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -30,7 +30,7 @@ public class AddServcie extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public AddServcie() {
+    public serviceFeed() {
         // Required empty public constructor
     }
 
@@ -40,11 +40,11 @@ public class AddServcie extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment AddServcie.
+     * @return A new instance of fragment serviceFeed.
      */
     // TODO: Rename and change types and number of parameters
-    public static AddServcie newInstance(String param1, String param2) {
-        AddServcie fragment = new AddServcie();
+    public static serviceFeed newInstance(String param1, String param2) {
+        serviceFeed fragment = new serviceFeed();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -65,7 +65,7 @@ public class AddServcie extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_servcie, container, false);
+        return inflater.inflate(R.layout.fragment_service_feed, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

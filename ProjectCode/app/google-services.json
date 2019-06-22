@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "904664426419",
+    "firebase_url": "https://soudagor-c97f2.firebaseio.com",
+    "project_id": "soudagor-c97f2",
+    "storage_bucket": "soudagor-c97f2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904664426419:android:0c23fe3424353f6f",
+        "android_client_info": {
+          "package_name": "com.example.jhasan.soudagor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "904664426419-l1q91fl5jq7b2obrpv90v65oeb8mg2e3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD73hhrTbSZo0icEdWFrzddTBtDF_5KE8A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "904664426419-l1q91fl5jq7b2obrpv90v65oeb8mg2e3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
