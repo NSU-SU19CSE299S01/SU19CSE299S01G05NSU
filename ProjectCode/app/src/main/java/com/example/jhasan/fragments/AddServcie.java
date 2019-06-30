@@ -29,7 +29,9 @@ import java.util.UUID;
 
 import static android.app.Activity.RESULT_OK;
 
-
+/**
+ * Created by jhasan on 27/6/19.
+ */
 
 
 public class AddServcie extends Fragment {
@@ -149,17 +151,6 @@ public class AddServcie extends Fragment {
         }
     }
 
-
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
 
 
     /**

@@ -1,5 +1,7 @@
 package com.example.jhasan.servicemodel;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.ArrayList;
 
 /**
@@ -17,7 +19,9 @@ public class serviceInfo {
     private int Image;
     private int ServiceFees;
 
-    //private LatLng houseLatlng;
+
+
+    private LatLng houseLatlng;
     private String ServiceTitle;
     private String ServieFeePrefer;
     private String ServiceCategory;
@@ -113,6 +117,15 @@ public class serviceInfo {
 
     public void setServiceCategory(String serviceCategory) {
         ServiceCategory = serviceCategory;
+    }
+
+
+    public LatLng getHouseLatlng() {
+        return houseLatlng;
+    }
+
+    public void setHouseLatlng(LatLng houseLatlng) {
+        this.houseLatlng = houseLatlng;
     }
 
 
