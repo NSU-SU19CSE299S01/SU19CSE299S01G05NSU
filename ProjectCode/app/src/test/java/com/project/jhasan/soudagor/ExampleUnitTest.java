@@ -1,4 +1,4 @@
-package com.example.jhasan.soudagor;
+package com.project.jhasan.soudagor;
 
 import org.junit.Test;
 

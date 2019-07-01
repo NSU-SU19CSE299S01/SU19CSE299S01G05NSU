@@ -1,4 +1,4 @@
-package com.example.jhasan.soudagor;
+package com.project.jhasan.soudagor;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.jhasan.fragments.AddServcie;
+import com.project.jhasan.fragments.AddServcie;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;

@@ -1,4 +1,4 @@
-package com.example.jhasan.soudagor;
+package com.project.jhasan.soudagor;
 
 import android.os.Bundle;
 

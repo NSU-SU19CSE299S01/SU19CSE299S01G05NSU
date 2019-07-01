@@ -1,4 +1,4 @@
-package com.example.jhasan.servicemodel;
+package com.project.jhasan.servicemodel;
 
 import com.google.android.gms.maps.model.LatLng;
 

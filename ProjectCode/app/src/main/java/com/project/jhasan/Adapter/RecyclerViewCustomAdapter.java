@@ -1,4 +1,4 @@
-package com.example.jhasan.Adapter;
+package com.project.jhasan.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,8 +12,8 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.jhasan.servicemodel.serviceInfo;
-import com.example.jhasan.soudagor.R;
+import com.project.jhasan.servicemodel.serviceInfo;
+import com.project.jhasan.soudagor.R;
 
 import java.util.List;
 

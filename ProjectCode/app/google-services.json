@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "904664426419",
-    "firebase_url": "https://soudagor-c97f2.firebaseio.com",
-    "project_id": "soudagor-c97f2",
-    "storage_bucket": "soudagor-c97f2.appspot.com"
+    "project_number": "467662979602",
+    "firebase_url": "https://soudagor.firebaseio.com",
+    "project_id": "soudagor",
+    "storage_bucket": "soudagor.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:904664426419:android:0c23fe3424353f6f",
+        "mobilesdk_app_id": "1:467662979602:android:2cf114974ceae67f",
         "android_client_info": {
-          "package_name": "com.example.jhasan.soudagor"
+          "package_name": "com.project.jhasan.soudagor"
         }
       },
       "oauth_client": [
         {
-          "client_id": "904664426419-l1q91fl5jq7b2obrpv90v65oeb8mg2e3.apps.googleusercontent.com",
+          "client_id": "467662979602-b79hqp6t88nsdnbj400b4m2tkm0ujtau.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD73hhrTbSZo0icEdWFrzddTBtDF_5KE8A"
+          "current_key": "AIzaSyB6a_z1BZgks7zISkPi0UaxmLsuwKruOQI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "904664426419-l1q91fl5jq7b2obrpv90v65oeb8mg2e3.apps.googleusercontent.com",
+              "client_id": "467662979602-b79hqp6t88nsdnbj400b4m2tkm0ujtau.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

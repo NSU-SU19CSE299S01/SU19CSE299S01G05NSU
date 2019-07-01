@@ -1,4 +1,4 @@
-package com.example.jhasan.fragments;
+package com.project.jhasan.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,9 +11,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.jhasan.Adapter.RecyclerViewCustomAdapter;
-import com.example.jhasan.servicemodel.serviceInfo;
-import com.example.jhasan.soudagor.R;
+import com.project.jhasan.Adapter.RecyclerViewCustomAdapter;
+import com.project.jhasan.servicemodel.serviceInfo;
+import com.project.jhasan.soudagor.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
