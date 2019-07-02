@@ -45,7 +45,7 @@ public class serviceFeed extends Fragment {
 
 
 
-            addHouse();
+            addService();
 
             RecyclerView rview = view.findViewById(R.id.toletList);
             LinearLayoutManager layout = new LinearLayoutManager(getActivity());
@@ -57,7 +57,12 @@ public class serviceFeed extends Fragment {
         }
 }
 
-    private void addHouse() {
+    private void addService() {
+        serviceList= new ArrayList<>();
+
+        serviceInfo service0=new serviceInfo();
+
+
 
     }
 
