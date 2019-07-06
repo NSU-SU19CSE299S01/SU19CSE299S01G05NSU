@@ -1,6 +1,7 @@
 package com.project.jhasan.soudagor;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,7 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class SignupActivity extends AppCompatActivity {
@@ -18,18 +25,19 @@ public class SignupActivity extends AppCompatActivity {
 
     private EditText _nameText, _emailText, _passwordText;
     private Button _signupButton, _loginLink;
+    private FirebaseAuth auth;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-
+        auth = FirebaseAuth.getInstance();
 
         _nameText=findViewById(R.id.input_name);
         _emailText =  findViewById(R.id.input_email);
         _passwordText = findViewById(R.id.input_password);
-        _signupButton = (Button) findViewById(R.id.btn_login);
+        _signupButton = (Button) findViewById(R.id.btn_signup);
 
 
 
@@ -40,13 +48,13 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
-        _loginLink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Finish the registration screen and return to the Login activity
-                finish();
-            }
-        });
+//        _loginLink.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Finish the registration screen and return to the Login activity
+//                finish();
+//            }
+//        });
     }
 
     public void signup() {
@@ -69,7 +77,28 @@ public class SignupActivity extends AppCompatActivity {
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
-        // TODO: Implement your own signup logic here.
+
+
+        //progressBar.setVisibility(View.VISIBLE);
+        //create user
+        auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Toast.makeText(SignupActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+                        //progressBar.setVisibility(View.GONE);
+
+
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(SignupActivity.this, "Authentication failed." + task.getException(),
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+                            finish();
+                        }
+                    }
+                });
+
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
@@ -95,6 +124,7 @@ public class SignupActivity extends AppCompatActivity {
 
         _signupButton.setEnabled(true);
     }
+
 
     public boolean validate() {
         boolean valid = true;
