@@ -58,6 +58,7 @@
             android:name=".MapsActivity"
             android:label="Map" />
 
+        <activity android:name=".Sign" android:theme="@style/AppTheme.Dark" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

@@ -26,9 +26,12 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.project.jhasan.servicemodel.serviceInfo;
 import com.project.jhasan.soudagor.R;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import static android.app.Activity.RESULT_OK;
@@ -52,8 +55,11 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
 
     FirebaseStorage storage;
     StorageReference storageReference;
-    FirebaseDatabase Firedata;
+    FirebaseDatabase Firedatabase;
 
+
+    //dummy
+    private String userName;
 
 
 
@@ -71,6 +77,8 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
 
         String[] serviceSpinner={"automotive","beauty","computer","creative", "event", "farm+garden","household","labor/move","travel/vac",
                                     "other" };
+
+        List<serviceInfo>serviceInfos=new ArrayList<>();
 
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
@@ -115,9 +123,21 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
             }
         });
 
+        /// Complete adding info
+        btnDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                allDone();
+            }
+        });
 
 
        return fragView;
+
+    }
+
+    private void allDone() {
+
 
     }
 
