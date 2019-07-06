@@ -33,11 +33,12 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+        >
 
-        <activity android:name=".LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
-            >
+        <!--<activity android:name=".LoginActivity"-->
+            <!--android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"-->
+            <!--&gt;-->
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -56,6 +57,7 @@
         <activity
             android:name=".MapsActivity"
             android:label="Map" />
+
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

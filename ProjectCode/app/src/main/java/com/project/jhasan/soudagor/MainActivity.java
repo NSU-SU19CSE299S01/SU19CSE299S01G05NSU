@@ -18,12 +18,13 @@ import com.project.jhasan.fragments.AddServcie;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.project.jhasan.fragments.serviceFeed;
 
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
-    private Button addService;
+    private Button addService,buttonn2;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+         buttonn2=(Button) findViewById(R.id.button2);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -54,6 +56,16 @@ public class MainActivity extends AppCompatActivity
 
 
         findViewById(R.id.button).setOnClickListener(this);
+
+        buttonn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)  {
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.container, new serviceFeed())
+                        .commit();
+            }
+        });
+
     }
 
     @Override
@@ -119,4 +131,7 @@ public class MainActivity extends AppCompatActivity
                 .add(R.id.container, new AddServcie())
                 .commit();
     }
+
+
+
 }

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "467662979602-nbikp7iq8rnrhm3oblnh4bhru5e31ih7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.project.jhasan.soudagor",
+            "certificate_hash": "4774ff2a2f7b89ff461c2aba14a828c70794bc10"
+          }
+        },
+        {
           "client_id": "467662979602-b79hqp6t88nsdnbj400b4m2tkm0ujtau.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -9,20 +9,24 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.project.jhasan.soudagor.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.project.jhasan.soudagor.R;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -34,7 +38,7 @@ import static android.app.Activity.RESULT_OK;
  */
 
 
-public class AddServcie extends Fragment {
+public class AddServcie extends Fragment implements AdapterView.OnItemSelectedListener {
 
 
 
@@ -48,6 +52,7 @@ public class AddServcie extends Fragment {
 
     FirebaseStorage storage;
     StorageReference storageReference;
+    FirebaseDatabase Firedata;
 
 
 
@@ -62,15 +67,37 @@ public class AddServcie extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
+        String[] serviceSpinner={"automotive","beauty","computer","creative", "event", "farm+garden","household","labor/move","travel/vac",
+                                    "other" };
+
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
         // Inflate the layout for this fragment
         View fragView= inflater.inflate(R.layout.fragment_add_servcie, container, false);
 
+        Spinner spin=fragView.findViewById(R.id.spinner);
+
         btnChoose=fragView.findViewById(R.id.btn_addImage);
+        imageView = fragView.findViewById(R.id.ImageView);
         btnDone=fragView.findViewById(R.id.btn_done);
         btnUpload=fragView.findViewById(R.id.button_up);
+
+
+        spin.setOnItemSelectedListener(this);
+
+        //Creating the ArrayAdapter instance having the servicce list
+
+        ArrayAdapter adapterSpin = new ArrayAdapter(this.getActivity(), android.R.layout.simple_spinner_item,serviceSpinner);
+        adapterSpin.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        //Setting the ArrayAdapter data on the Spinner
+        spin.setAdapter(adapterSpin);
+
+
+        // Choose image
 
         btnChoose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,13 +105,17 @@ public class AddServcie extends Fragment {
                 chooseImage();
             }
         });
-        
+
+        //Upload Image
+
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 uploadImage();
             }
         });
+
+
 
        return fragView;
 
@@ -151,6 +182,27 @@ public class AddServcie extends Fragment {
         }
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parentview, View selectedItemview, int position, long id) {
+
+        String item= parentview.getItemAtPosition(position).toString();
+        CharSequence text=item;
+
+        if (item != null) {
+            Toast.makeText(getContext(), item,
+                    Toast.LENGTH_SHORT).show();
+        }
+        Toast.makeText(getContext(), "Selected",
+                Toast.LENGTH_SHORT).show();
+
+//        Toast.makeText(parentview.getContext(),item, Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 
 
     /**

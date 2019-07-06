@@ -47,7 +47,7 @@ public class serviceFeed extends Fragment {
 
             addService();
 
-            RecyclerView rview = view.findViewById(R.id.toletList);
+            RecyclerView rview = view.findViewById(R.id.serviceList);
             LinearLayoutManager layout = new LinearLayoutManager(getActivity());
 
             RecyclerViewCustomAdapter adapter = new RecyclerViewCustomAdapter(getActivity(), serviceList);
