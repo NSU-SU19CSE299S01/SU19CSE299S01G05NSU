@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -21,9 +21,6 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
@@ -33,6 +30,8 @@ import com.project.jhasan.servicemodel.serviceInfo;
 import com.project.jhasan.soudagor.R;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import static android.app.Activity.RESULT_OK;
@@ -47,8 +46,7 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
 
 
     private ImageView btnChoose,btnDone , imageView;
-    private EditText serviceName,serviceFee,serviceAddress,serviceDescription,servicePhone;
-
+    Button btnUpload;
 
     private Uri filepath;
 
@@ -57,11 +55,13 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
 
     FirebaseStorage storage;
     StorageReference storageReference;
-    FirebaseDatabase firedatabase;
+    FirebaseDatabase Firedatabase;
 
 
+    //dummy
+    private String userName;
 
-    private FirebaseAuth mAuth;
+
 
 
     public AddServcie() {
@@ -78,30 +78,20 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
         String[] serviceSpinner={"automotive","beauty","computer","creative", "event", "farm+garden","household","labor/move","travel/vac",
                                     "other" };
 
-       // List<serviceInfo>serviceInfos=new ArrayList<>();
-        mAuth = FirebaseAuth.getInstance();
-
+        List<serviceInfo>serviceInfos=new ArrayList<>();
 
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
-        firedatabase = FirebaseDatabase.getInstance();
+
         // Inflate the layout for this fragment
         View fragView= inflater.inflate(R.layout.fragment_add_servcie, container, false);
 
-
-        serviceName=fragView.findViewById(R.id.editServiceName);
-        serviceFee=fragView.findViewById(R.id.editFee);
-        serviceAddress=fragView.findViewById(R.id.editLocation);
-        serviceDescription=fragView.findViewById(R.id.editDescription);
-        servicePhone=fragView.findViewById(R.id.editPhone);
-
-
         Spinner spin=fragView.findViewById(R.id.spinner);
+
         btnChoose=fragView.findViewById(R.id.btn_addImage);
         imageView = fragView.findViewById(R.id.ImageView);
         btnDone=fragView.findViewById(R.id.btn_done);
-
-
+        btnUpload=fragView.findViewById(R.id.button_up);
 
 
         spin.setOnItemSelectedListener(this);
@@ -126,12 +116,18 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
 
         //Upload Image
 
+        btnUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                uploadImage();
+            }
+        });
 
         /// Complete adding info
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uploadImage();
+                allDone();
             }
         });
 
@@ -140,33 +136,10 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
 
     }
 
-    //set service info data
-
     private void allDone() {
 
-        String userId = mAuth.getUid();
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-        serviceInfo info = new serviceInfo();
-
-        info.setServiceCategory(serviceCategory);
-        info.setServiceName(serviceName.getText().toString());
-        info.setServiceFees(serviceFee.getText().toString());
-        info.setAddress(serviceAddress.getText().toString());
-        info.setServiceDescription(serviceDescription.getText().toString());
-        info.setImage(downloadImageUrl);
-        info.setServiceProviderContact(servicePhone.getText().toString());
-        info.setUID(userId);
-
-
-        DatabaseReference reference = firedatabase.getReference().child("services").push();
-        reference.setValue(info);
 
     }
-
-    private String downloadImageUrl;
-    private  String serviceCategory;
 
     private void uploadImage() {
 
@@ -176,20 +149,13 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
-            final StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
+            StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
             ref.putFile(filepath)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
                             Toast.makeText(AddServcie.this.getActivity(), "Uploaded", Toast.LENGTH_SHORT).show();
-                            ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri uri) {
-                                    downloadImageUrl = uri.toString();
-                                    allDone();
-                                }
-                            });
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -207,9 +173,7 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
                             progressDialog.setMessage("Uploaded "+(int)progress+"%");
                         }
                     });
-
         }
-
     }
 
     private void chooseImage() {
@@ -247,8 +211,6 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
         if (item != null) {
             Toast.makeText(getContext(), item,
                     Toast.LENGTH_SHORT).show();
-            serviceCategory=item;
-
         }
         Toast.makeText(getContext(), "Selected",
                 Toast.LENGTH_SHORT).show();
