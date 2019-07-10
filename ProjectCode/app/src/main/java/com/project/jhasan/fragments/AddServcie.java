@@ -144,9 +144,27 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
 
     private void allDone() {
 
+        String userId = mAuth.getUid();
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        serviceInfo info = new serviceInfo();
+
+        info.setServiceCategory(serviceCategory);
+        info.setServiceName(serviceName.getText().toString());
+        info.setServiceFees(serviceFee.getText().toString());
+        info.setAddress(serviceAddress.getText().toString());
+        info.setServiceDescription(serviceDescription.getText().toString());
+        info.setServiceProviderContact(servicePhone.getText().toString());
+        info.setUID(userId);
+
+
+        DatabaseReference reference = firedatabase.getReference().child("services").push();
+        reference.setValue(info);
 
     }
 
+    private  String serviceCategory;
     private void uploadImage() {
 
         if(filepath != null)
