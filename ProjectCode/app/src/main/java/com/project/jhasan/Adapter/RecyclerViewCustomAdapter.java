@@ -49,8 +49,8 @@ public class RecyclerViewCustomAdapter extends RecyclerView.Adapter<RecyclerView
     @Override
     public void onBindViewHolder(AdapterViewHolder holder, int position) {
 
-        holder.imageView.setBackgroundResource(serviceList.get(position).getImage());
-        holder.titleTextView.setText(serviceList.get(position).getServiceTitle().toString());
+        //holder.imageView.setBackgroundResource(serviceList.get(position).getImage());
+        holder.titleTextView.setText(serviceList.get(position).getServiceCategory().toString());
         holder.feeTextView.setText(serviceList.get(position).getServiceFees() + " BDT ");
         holder.ratingBar.setRating((float) serviceList.get(position).getServiceRating());
     }
