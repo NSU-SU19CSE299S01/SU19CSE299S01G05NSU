@@ -155,6 +155,7 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
         info.setServiceFees(serviceFee.getText().toString());
         info.setAddress(serviceAddress.getText().toString());
         info.setServiceDescription(serviceDescription.getText().toString());
+        info.setImage(downloadImageUrl);
         info.setServiceProviderContact(servicePhone.getText().toString());
         info.setUID(userId);
 
@@ -164,7 +165,9 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
 
     }
 
+    private String downloadImageUrl;
     private  String serviceCategory;
+
     private void uploadImage() {
 
         if(filepath != null)
@@ -173,12 +176,20 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
+            final StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
             ref.putFile(filepath)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
                             Toast.makeText(AddServcie.this.getActivity(), "Uploaded", Toast.LENGTH_SHORT).show();
+                            ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    downloadImageUrl = uri.toString();
+                                    allDone();
+                                }
+                            });
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
