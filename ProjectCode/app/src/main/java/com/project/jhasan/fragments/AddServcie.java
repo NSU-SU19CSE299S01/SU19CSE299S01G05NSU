@@ -75,7 +75,7 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
                              Bundle savedInstanceState) {
 
 
-        String[] serviceSpinner={"automotive","beauty","computer","creative", "event", "farm+garden","household","labor/move","travel/vac",
+        String[] servicesSpinner={"Automotive","Beauty","Computer","creative", "Event", "Farm+garden","Household","labor/move","travel/vac",
                                     "other" };
 
         List<serviceInfo>serviceInfos=new ArrayList<>();
@@ -98,7 +98,7 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
 
         //Creating the ArrayAdapter instance having the servicce list
 
-        ArrayAdapter adapterSpin = new ArrayAdapter(this.getActivity(), android.R.layout.simple_spinner_item,serviceSpinner);
+        ArrayAdapter adapterSpin = new ArrayAdapter(this.getActivity(), android.R.layout.simple_spinner_item,servicesSpinner);
         adapterSpin.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         //Setting the ArrayAdapter data on the Spinner
