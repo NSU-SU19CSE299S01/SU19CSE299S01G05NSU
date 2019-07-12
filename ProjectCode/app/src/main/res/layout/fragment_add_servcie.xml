@@ -11,7 +11,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="56dp"
+        android:paddingTop="40dp"
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
@@ -50,21 +50,58 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Description"
+        android:text="Fee"
         android:textSize="22dp"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/editDescription"
+        android:id="@+id/editFee"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textNoSuggestions" >
     </EditText>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textSize="22dp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/editDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textNoSuggestions" >
+        </EditText>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location"
+            android:textSize="22dp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/editLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textNoSuggestions" >
+        </EditText>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editPhone"
+            android:inputType="phone"
+            android:hint="@string/phone_hint"
+            android:digits="0123456789+"
+            />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp">
+        android:layout_height="200dp">
 
 
 
@@ -85,31 +122,29 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_alignParentBottom="true"
-
+            android:layout_marginBottom="10dp"
             android:text="ADD IMAGE"
-            android:textSize="25dp" />
+            android:textSize="20dp" />
 
         <ImageView
             android:id="@+id/ImageView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+
+            />
 
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/button_up"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Upload" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/btn_done"
-        android:layout_width="90dp"
-        android:layout_height="40dp"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/ImageView"
         android:layout_gravity="center"
         android:layout_marginBottom="2dp"
+        android:background="@color/greenYellow"
         android:src="@drawable/ic_done_all_black_24dp" />
 
     </LinearLayout>

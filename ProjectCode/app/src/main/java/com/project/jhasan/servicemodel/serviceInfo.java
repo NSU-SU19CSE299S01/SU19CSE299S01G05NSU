@@ -10,25 +10,47 @@ import java.util.ArrayList;
 
 public class serviceInfo {
 
+    private String UID;
+
+
+    private  String serviceCategory;
     private String serviceName;
     private String address;
     private String ServiceDescription;
     private String ServiceProviderContact;
-    private ArrayList<String>ServiceImageLink;
-    private double ServiceRating;
-    private int Image;
-    private int ServiceFees;
+    private ArrayList<String>ServiceImageLink = new ArrayList();
+    private double ServiceRating=0;
+    private String Image;
+    private String ServiceFees;
 
 
 
-    private LatLng houseLatlng;
-    private String ServiceTitle;
+    private LatLng serviceLatlng;
+   // private String ServiceTitle;
     private String ServieFeePrefer;
     private String ServiceCategory;
+
 
     //Constructor
     public serviceInfo(){
 
+    }
+
+    public String getUID() {
+        return UID;
+    }
+
+    public void setUID(String UID) {
+        this.UID = UID;
+    }
+
+
+    public String getserviceCategory() {
+        return serviceCategory;
+    }
+
+    public void setserviceCategory(String image) {
+        this.serviceCategory=serviceCategory;
     }
 
     public String getServiceName() {
@@ -79,37 +101,31 @@ public class serviceInfo {
         ServiceRating = serviceRating;
     }
 
-    public int getImage() {
+    public String getImage() {
         return Image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         Image = image;
     }
 
-    public int getServiceFees() {
+    public String getServiceFees() {
         return ServiceFees;
     }
 
-    public void setServiceFees(int serviceFees) {
+    public void setServiceFees(String serviceFees) {
         ServiceFees = serviceFees;
     }
 
-    public String getServiceTitle() {
-        return ServiceTitle;
-    }
+//    public String getServiceTitle() {
+//        return ServiceTitle;
+//    }
+//
+//    public void setServiceTitle(String serviceTitle) {
+//        ServiceTitle = serviceTitle;
+//    }
 
-    public void setServiceTitle(String serviceTitle) {
-        ServiceTitle = serviceTitle;
-    }
 
-    public String getServieFeePrefer() {
-        return ServieFeePrefer;
-    }
-
-    public void setServieFeePrefer(String servieFeePrefer) {
-        ServieFeePrefer = servieFeePrefer;
-    }
 
     public String getServiceCategory() {
         return ServiceCategory;
@@ -120,12 +136,12 @@ public class serviceInfo {
     }
 
 
-    public LatLng getHouseLatlng() {
-        return houseLatlng;
+    public LatLng getServiceLatlng() {
+        return serviceLatlng;
     }
 
-    public void setHouseLatlng(LatLng houseLatlng) {
-        this.houseLatlng = houseLatlng;
+    public void setServiceLatlng(LatLng houseLatlng) {
+        this.serviceLatlng = serviceLatlng;
     }
 
 
