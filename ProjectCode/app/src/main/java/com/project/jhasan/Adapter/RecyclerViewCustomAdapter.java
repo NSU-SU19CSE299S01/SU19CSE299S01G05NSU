@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.project.jhasan.servicemodel.serviceInfo;
 import com.project.jhasan.soudagor.R;
 
@@ -49,7 +50,10 @@ public class RecyclerViewCustomAdapter extends RecyclerView.Adapter<RecyclerView
     @Override
     public void onBindViewHolder(AdapterViewHolder holder, int position) {
 
-        //holder.imageView.setBackgroundResource(serviceList.get(position).getImage());
+
+        Glide.with(context)
+                .load(serviceList.get(position).getImage())
+                .into(holder.imageView);
         holder.titleTextView.setText(serviceList.get(position).getServiceCategory().toString());
         holder.feeTextView.setText(serviceList.get(position).getServiceFees() + " BDT ");
         holder.ratingBar.setRating((float) serviceList.get(position).getServiceRating());

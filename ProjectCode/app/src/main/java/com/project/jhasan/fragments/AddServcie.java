@@ -91,9 +91,7 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
         btnChoose=fragView.findViewById(R.id.btn_addImage);
         imageView = fragView.findViewById(R.id.ImageView);
         btnDone=fragView.findViewById(R.id.btn_done);
-        btnUpload=fragView.findViewById(R.id.button_up);
-
-
+        
         spin.setOnItemSelectedListener(this);
 
         //Creating the ArrayAdapter instance having the servicce list
