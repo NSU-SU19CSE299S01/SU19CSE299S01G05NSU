@@ -39,6 +39,10 @@ public class RecyclerViewCustomAdapter extends RecyclerView.Adapter<RecyclerView
 
     }
 
+    public void setServiceList(List<serviceInfo> serviceList) {
+        this.serviceList = serviceList;
+    }
+
     @Override
     public AdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -51,12 +55,13 @@ public class RecyclerViewCustomAdapter extends RecyclerView.Adapter<RecyclerView
     public void onBindViewHolder(AdapterViewHolder holder, int position) {
 
 
+        serviceInfo serviceInfo = serviceList.get(position);
         Glide.with(context)
-                .load(serviceList.get(position).getImage())
+                .load(serviceInfo.getImage())
                 .into(holder.imageView);
-        holder.titleTextView.setText(serviceList.get(position).getServiceCategory().toString());
-        holder.feeTextView.setText(serviceList.get(position).getServiceFees() + " BDT ");
-        holder.ratingBar.setRating((float) serviceList.get(position).getServiceRating());
+        holder.titleTextView.setText(serviceInfo.getserviceCategory());
+        holder.feeTextView.setText(serviceInfo.getServiceFees() + " BDT ");
+        holder.ratingBar.setRating((float) serviceInfo.getServiceRating());
     }
 
     @Override
