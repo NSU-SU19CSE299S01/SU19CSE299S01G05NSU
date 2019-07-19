@@ -26,9 +26,8 @@ public class serviceInfo {
 
 
     private LatLng serviceLatlng;
-   // private String ServiceTitle;
-    private String ServieFeePrefer;
-    private String ServiceCategory;
+
+
 
 
     //Constructor
@@ -49,7 +48,7 @@ public class serviceInfo {
         return serviceCategory;
     }
 
-    public void setserviceCategory(String image) {
+    public void setserviceCategory(String serviceCategory) {
         this.serviceCategory=serviceCategory;
     }
 
@@ -124,16 +123,6 @@ public class serviceInfo {
 //    public void setServiceTitle(String serviceTitle) {
 //        ServiceTitle = serviceTitle;
 //    }
-
-
-
-    public String getServiceCategory() {
-        return ServiceCategory;
-    }
-
-    public void setServiceCategory(String serviceCategory) {
-        ServiceCategory = serviceCategory;
-    }
 
 
     public LatLng getServiceLatlng() {

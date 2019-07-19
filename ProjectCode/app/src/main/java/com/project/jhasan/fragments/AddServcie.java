@@ -147,7 +147,7 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
 
         serviceInfo info = new serviceInfo();
 
-        info.setServiceCategory(serviceCategory);
+        info.setserviceCategory(serviceCategory);
         info.setServiceName(serviceName.getText().toString());
         info.setServiceFees(serviceFee.getText().toString());
         info.setAddress(serviceAddress.getText().toString());
