@@ -1,13 +1,13 @@
 package com.project.jhasan.soudagor;
 
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,9 +28,11 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText _emailText, _passwordText;
     private Button _loginButton, mRegistration;
+    private ProgressBar progressBar;
     private TextView _signupLink;
 
 
+    SessionMangement userSession;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
@@ -41,8 +43,26 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
+//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//
+//        if(user != null) {
+//
+//
+//            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//            startActivity(intent);
+//            this.finish();
+//
+//        }
+        userSession= new SessionMangement(getApplicationContext());
 
         mAuth = FirebaseAuth.getInstance();
+        if (mAuth.getCurrentUser() != null) {
+            // User is logged in
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
 
         firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -54,12 +74,14 @@ public class LoginActivity extends AppCompatActivity {
                     finish();
                     return;
                 }
+
+
             }
         };
 
         _emailText = (EditText) findViewById(R.id.input_email);
         _passwordText = (EditText) findViewById(R.id.input_password);
-
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
         _loginButton = (Button) findViewById(R.id.btn_login);
         _signupLink=findViewById(R.id.link_signup);
 
@@ -67,6 +89,8 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+
+                progressBar.setVisibility(View.VISIBLE);
 
                 login();
             }
@@ -91,13 +115,7 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        _loginButton.setEnabled(false);
-
-        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
-                R.style.AppTheme);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Authenticating...");
-        progressDialog.show();
+        //_loginButton.setEnabled(false);
 
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
@@ -108,23 +126,23 @@ public class LoginActivity extends AppCompatActivity {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+
+                progressBar.setVisibility(View.GONE);
+
                 if(!task.isSuccessful()){
                     Toast.makeText(LoginActivity.this, "sign in error", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
             }
         });
 
 
 
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
-                        onLoginSuccess();
-                        // onLoginFailed();
-                        progressDialog.dismiss();
-                    }
-                }, 3000);
+
     }
 
 
