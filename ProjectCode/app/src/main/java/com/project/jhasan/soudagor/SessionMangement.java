@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import java.util.HashMap;
+
 public class SessionMangement {
 
     SharedPreferences pref;
@@ -64,6 +66,18 @@ public class SessionMangement {
             _context.startActivity(i);
         }
 
+    }
+
+    public HashMap<String, String> getUserDetails(){
+        HashMap<String, String> user = new HashMap<String, String>();
+        // user name
+        user.put(KEY_NAME, pref.getString(KEY_NAME, null));
+
+        // user email id
+        user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
+
+        // return user
+        return user;
     }
 
     private boolean isLoggedIn() {
