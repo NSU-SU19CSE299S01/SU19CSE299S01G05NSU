@@ -1,6 +1,7 @@
 package com.project.jhasan.soudagor;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 
 public class SessionMangement {
@@ -43,7 +44,29 @@ public class SessionMangement {
 
         // Storing email in pref
         editor.putString(KEY_EMAIL, email);
-        
+
         editor.commit();
+    }
+
+
+    public void checkLogin(){
+        // Check login status
+        if(!this.isLoggedIn()){
+            // user is not logged in redirect him to Login Activity
+            Intent i = new Intent(_context, LoginActivity.class);
+            // Closing all the Activities
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+            // Add new Flag to start new Activity
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            // Staring Login Activity
+            _context.startActivity(i);
+        }
+
+    }
+
+    private boolean isLoggedIn() {
+        return pref.getBoolean(IS_LOGIN, false);
     }
 }
