@@ -1,11 +1,14 @@
 package com.project.jhasan.soudagor;
 
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -14,19 +17,28 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.project.jhasan.fragments.AddServcie;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.project.jhasan.fragments.AddServcie;
 import com.project.jhasan.fragments.serviceFeed;
 
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
+    private NavigationView navigationView;
+    private View navHeader;
+    private ImageView  imgProfile;
+    private TextView txtName, txtEmail;
+
+    private FirebaseUser user;
     private Button addService,button,button2;
+
+    private String NavName,NavEmail;
+    private Uri NavPhotoUrl;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -34,12 +46,20 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar =  findViewById(R.id.toolbar);
         button=findViewById(R.id.button);
-         button2=findViewById(R.id.button2);
+        button2=findViewById(R.id.button2);
         setSupportActionBar(toolbar);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        // Navigation view header
+        navHeader = navigationView.getHeaderView(0);
+        txtName = (TextView) navHeader.findViewById(R.id.name);
+        txtEmail = (TextView) navHeader.findViewById(R.id.email);
+        imgProfile = (ImageView) navHeader.findViewById(R.id.imageView);
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -47,8 +67,15 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+
+
+
             }
         });
+
+        loadNavHeader();
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -56,7 +83,7 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
 
@@ -74,6 +101,27 @@ public class MainActivity extends AppCompatActivity
                         .commit();
             }
         });
+
+    }
+
+    private void loadNavHeader() {
+
+        if (user != null) {
+// Name, email address, and profile photo Url
+             NavName = user.getDisplayName();
+             NavEmail = user.getEmail();
+             NavPhotoUrl = user.getPhotoUrl();
+
+
+            boolean emailVerified = user.isEmailVerified();
+
+            String uid = user.getUid();
+        }
+
+        txtName.setText(NavName);
+        txtEmail.setText(NavEmail);
+        imgProfile.setImageURI(NavPhotoUrl);
+
 
     }
 

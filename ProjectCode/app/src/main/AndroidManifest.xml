@@ -21,9 +21,9 @@
     <application
         android:allowBackup="false"
         tools:replace="android:allowBackup"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/addimage"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/addimage"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
