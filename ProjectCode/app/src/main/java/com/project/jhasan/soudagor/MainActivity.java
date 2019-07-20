@@ -1,5 +1,6 @@
 package com.project.jhasan.soudagor;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity
 
     private String NavName,NavEmail;
     private Uri NavPhotoUrl;
+    private FirebaseAuth mAuth;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -60,6 +63,7 @@ public class MainActivity extends AppCompatActivity
         imgProfile = (ImageView) navHeader.findViewById(R.id.imageView);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
+        mAuth=FirebaseAuth.getInstance();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -173,7 +177,28 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_logout) {
+            View logout = findViewById(R.id.nav_logout);
+            logout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mAuth.signOut();
+                    FirebaseAuth.AuthStateListener authListener = new FirebaseAuth.AuthStateListener() {
+                        @Override
+                        public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                            FirebaseUser user = firebaseAuth.getCurrentUser();
+                            if (user == null) {
+                                // user auth state is changed - user is null
+                                // launch login activity
+                                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                                finish();
+                            }
+                        }
+                    };
+                }
+            });
+
+
 
         }
 
