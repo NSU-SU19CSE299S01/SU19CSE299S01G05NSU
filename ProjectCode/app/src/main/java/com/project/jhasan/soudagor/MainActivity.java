@@ -26,7 +26,7 @@ import com.project.jhasan.fragments.serviceFeed;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
-    private Button addService,buttonn2;
+    private Button addService,button,button2;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-         buttonn2=(Button) findViewById(R.id.button2);
+        button=findViewById(R.id.button);
+         button2=findViewById(R.id.button2);
         setSupportActionBar(toolbar);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -59,11 +60,15 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        findViewById(R.id.button).setOnClickListener(this);
+        button.setOnClickListener(this);
 
-        buttonn2.setOnClickListener(new View.OnClickListener() {
+        button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)  {
+                button.setVisibility(View.GONE);
+
+                button2.setVisibility(View.GONE);
+
                 getSupportFragmentManager().beginTransaction()
                         .add(R.id.container, new serviceFeed())
                         .commit();
@@ -131,9 +136,12 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onClick(View view) {
+        button.setVisibility(View.GONE);
+        button2.setVisibility(View.GONE);
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.container, new AddServcie())
                 .commit();
+
     }
 
 
