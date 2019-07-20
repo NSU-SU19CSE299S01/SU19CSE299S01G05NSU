@@ -87,10 +87,7 @@ public class SignupActivity extends AppCompatActivity {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                .setDisplayName(name).build();
 
-        user.updateProfile(profileUpdates);
         //create user
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
@@ -104,6 +101,9 @@ public class SignupActivity extends AppCompatActivity {
                             Toast.makeText(SignupActivity.this, "Authentication failed." + task.getException(),
                                     Toast.LENGTH_SHORT).show();
 
+
+
+                            } else {
                             if (task.isSuccessful()) {
                                 // Sign in is successful
                                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -120,13 +120,11 @@ public class SignupActivity extends AppCompatActivity {
                                                 }
                                             }
                                         });
-
-                            } else {
-                                startActivity(new Intent(SignupActivity.this, LoginActivity.class));
-                                finish();
                             }
+                            startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+                            finish();
                         }
-                    }
+                        }
                 });
 
 
