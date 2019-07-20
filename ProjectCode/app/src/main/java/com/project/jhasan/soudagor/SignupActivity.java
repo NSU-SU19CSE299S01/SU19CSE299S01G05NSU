@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 
 public class SignupActivity extends AppCompatActivity {
@@ -26,6 +28,7 @@ public class SignupActivity extends AppCompatActivity {
     private EditText _nameText, _emailText, _passwordText;
     private Button _signupButton, _loginLink;
     private FirebaseAuth auth;
+    private String name,email,password;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,13 +76,21 @@ public class SignupActivity extends AppCompatActivity {
         progressDialog.setMessage("Creating Account...");
         progressDialog.show();
 
-        String name = _nameText.getText().toString();
-        String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
+        name = _nameText.getText().toString();
+        email = _emailText.getText().toString();
+        password = _passwordText.getText().toString();
 
 
 
         //progressBar.setVisibility(View.VISIBLE);
+
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                .setDisplayName(name).build();
+
+        user.updateProfile(profileUpdates);
         //create user
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
@@ -92,9 +103,28 @@ public class SignupActivity extends AppCompatActivity {
                         if (!task.isSuccessful()) {
                             Toast.makeText(SignupActivity.this, "Authentication failed." + task.getException(),
                                     Toast.LENGTH_SHORT).show();
-                        } else {
-                            startActivity(new Intent(SignupActivity.this, LoginActivity.class));
-                            finish();
+
+                            if (task.isSuccessful()) {
+                                // Sign in is successful
+                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                        .setDisplayName(name).build();
+
+                                user.updateProfile(profileUpdates)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    Log.d(TAG, "User profile updated.");
+                                                }
+                                            }
+                                        });
+
+                            } else {
+                                startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+                                finish();
+                            }
                         }
                     }
                 });
