@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity
         button2=findViewById(R.id.button2);
         setSupportActionBar(toolbar);
 
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         // Navigation view header
         navHeader = navigationView.getHeaderView(0);
