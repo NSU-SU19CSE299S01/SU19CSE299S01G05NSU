@@ -8,13 +8,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -23,7 +26,6 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.project.jhasan.fragments.AddServcie;
 import com.project.jhasan.fragments.serviceFeed;
 
 
@@ -43,15 +45,23 @@ public class MainActivity extends AppCompatActivity
     private FirebaseAuth mAuth;
 
 
+    GridLayout mainGrid;
+
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar =  findViewById(R.id.toolbar);
-        button=findViewById(R.id.button);
-        button2=findViewById(R.id.button2);
+//        button=findViewById(R.id.button);
+//        button2=findViewById(R.id.button2);
         setSupportActionBar(toolbar);
+
+
+        mainGrid=findViewById(R.id.mainGrid);
+
+        setSingleEvent(mainGrid);
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
 
@@ -90,21 +100,32 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        button.setOnClickListener(this);
 
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)  {
-                button.setVisibility(View.GONE);
 
-                button2.setVisibility(View.GONE);
+    }
 
-                getSupportFragmentManager().beginTransaction()
-                        .add(R.id.container, new serviceFeed())
-                        .commit();
-            }
-        });
+    private void setSingleEvent(GridLayout mainGrid) {
+        for (int i=0;i<mainGrid.getChildCount();i++)
+        {
+            CardView cardView= (CardView) mainGrid.getChildAt(i);
+            final int finalI=i;
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
+                    Toast.makeText(MainActivity.this,"Clicked at index"+finalI,Toast.LENGTH_SHORT).show();
+                    if (finalI == 0){
+                        serviceFeed fragment = new serviceFeed();
+                        fragment.categoryName = "computer";
+                        getSupportFragmentManager().beginTransaction()
+                                .add(R.id.container, fragment)
+                                .addToBackStack(null)
+                                .commit();
+                    }
+
+                }
+            });
+        }
     }
 
     private void loadNavHeader() {
@@ -127,6 +148,8 @@ public class MainActivity extends AppCompatActivity
 
 
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -199,14 +222,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onClick(View view) {
-        button.setVisibility(View.GONE);
-        button2.setVisibility(View.GONE);
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.container, new AddServcie())
-                .commit();
+    public void onClick(View v) {
 
     }
+
+
 
 
 
