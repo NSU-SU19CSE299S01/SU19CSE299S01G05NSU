@@ -33,6 +33,7 @@ public class serviceFeed extends Fragment {
     DatabaseReference myRef = database.getReference("Provider").child("ServiceList");
     public static ArrayList<serviceInfo> serviceList;
     private RecyclerViewCustomAdapter adapter;
+    public String categoryName;
 
 
     @Nullable
@@ -59,6 +60,18 @@ public class serviceFeed extends Fragment {
                  adapter.setServiceList(serviceList);
                  adapter.notifyDataSetChanged();
 
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        FirebaseDatabase.getInstance().getReference().child("services").orderByChild("serviceCategory").equalTo(categoryName).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.d("","");
             }
 
             @Override
