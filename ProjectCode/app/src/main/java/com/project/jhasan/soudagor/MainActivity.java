@@ -122,6 +122,14 @@ public class MainActivity extends AppCompatActivity
                                 .addToBackStack(null)
                                 .commit();
                     }
+                    else if (finalI==1){
+                        serviceFeed fragment = new serviceFeed();
+                        fragment.categoryName="ALL";
+                        getSupportFragmentManager().beginTransaction()
+                                .add(R.id.container, fragment)
+                                .addToBackStack(null)
+                                .commit();
+                    }
 
                 }
             });
