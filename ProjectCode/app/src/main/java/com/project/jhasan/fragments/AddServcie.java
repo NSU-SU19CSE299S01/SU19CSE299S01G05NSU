@@ -42,7 +42,7 @@ import static android.app.Activity.RESULT_OK;
  */
 
 
-public class AddServcie extends Fragment implements AdapterView.OnItemSelectedListener {
+public class AddServcie extends Fragment implements  AdapterView.OnItemSelectedListener {
 
 
 
@@ -67,6 +67,7 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
     public AddServcie() {
         // Required empty public constructor
     }
+
 
 
 
@@ -260,6 +261,10 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
     }
 
 
+
+    }
+
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -274,4 +279,4 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
 //        // TODO: Update argument type and name
 //        void onFragmentInteraction(Uri uri);
 //    }
-}
+
