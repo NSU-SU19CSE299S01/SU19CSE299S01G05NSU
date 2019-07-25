@@ -39,7 +39,7 @@ public class serviceFeed extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_service_feed,container,false);
+        View view = inflater.inflate(R.layout.fragment_service_feed, container, false);
         myRef.setValue("saudabaji");
         initRecyclerView(view);
         return view;
@@ -48,37 +48,45 @@ public class serviceFeed extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        database.getReference().child("services").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.d("Data: ", dataSnapshot.toString());
-                 for(DataSnapshot childDataSnapshot: dataSnapshot.getChildren()){
-                     serviceInfo forFeedInfo=childDataSnapshot.getValue(serviceInfo.class);
-                     serviceList.add(forFeedInfo);
-                 }
+        if (categoryName.contentEquals("ALL")) {
+            database.getReference().child("services").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    Log.d("Data: ", dataSnapshot.toString());
+                    for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
+                        serviceInfo forFeedInfo = childDataSnapshot.getValue(serviceInfo.class);
+                        serviceList.add(forFeedInfo);
+                    }
 
-                 adapter.setServiceList(serviceList);
-                 adapter.notifyDataSetChanged();
+                    adapter.setServiceList(serviceList);
+                    adapter.notifyDataSetChanged();
 
-            }
+                }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
+                }
+            });
+        } else {
+            FirebaseDatabase.getInstance().getReference().child("services").orderByChild("serviceCategory").equalTo(categoryName).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    Log.d("Data: ", dataSnapshot.toString());
+                    for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
+                        serviceInfo forFeedInfo = childDataSnapshot.getValue(serviceInfo.class);
+                        serviceList.add(forFeedInfo);
+                    }
+                    adapter.setServiceList(serviceList);
+                    adapter.notifyDataSetChanged();
+                }
 
-        FirebaseDatabase.getInstance().getReference().child("services").orderByChild("serviceCategory").equalTo(categoryName).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.d("","");
-            }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+                }
+            });
+        }
     }
 
     private void initRecyclerView(View view) {
@@ -86,27 +94,26 @@ public class serviceFeed extends Fragment {
         {
 
 
-
             addService();
 
             RecyclerView rview = view.findViewById(R.id.serviceList);
             LinearLayoutManager layout = new LinearLayoutManager(getActivity());
 
-             adapter = new RecyclerViewCustomAdapter(getActivity(), serviceList);
+            adapter = new RecyclerViewCustomAdapter(getActivity(), serviceList);
             rview.setAdapter(adapter);
             rview.setLayoutManager(layout);
 
         }
-}
+    }
 
     private void addService() {
-        serviceList= new ArrayList<>();
+        serviceList = new ArrayList<>();
 
-        serviceInfo service0=new serviceInfo();
-
-
-    }
+        serviceInfo service0 = new serviceInfo();
 
 
     }
+
+
+}
 
