@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity
         navHeader = navigationView.getHeaderView(0);
         txtName = (TextView) navHeader.findViewById(R.id.name);
         txtEmail = (TextView) navHeader.findViewById(R.id.email);
-        imgProfile = (ImageView) navHeader.findViewById(R.id.imageView);
+        imgProfile = (ImageView) navHeader.findViewById(R.id.imageViewPro);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         mAuth=FirebaseAuth.getInstance();
@@ -132,7 +132,6 @@ public class MainActivity extends AppCompatActivity
 
 
     private String downloadImageUrl;
-    private  String serviceCategory;
 
     private void uploadImage() {
 
@@ -223,7 +222,7 @@ public class MainActivity extends AppCompatActivity
 // Name, email address, and profile photo Url
              NavName = user.getDisplayName();
              NavEmail = user.getEmail();
-             NavPhotoUrl = user.getPhotoUrl();
+//             NavPhotoUrl = user.getPhotoUrl();
 
 
             boolean emailVerified = user.isEmailVerified();
@@ -233,7 +232,7 @@ public class MainActivity extends AppCompatActivity
 
         txtName.setText(NavName);
         txtEmail.setText(NavEmail);
-        imgProfile.setImageURI(NavPhotoUrl);
+        imgProfile.setImageURI(Uri.parse(downloadImageUrl));
 
 
     }
