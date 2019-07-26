@@ -35,7 +35,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.project.jhasan.fragments.AddServcie;
 import com.project.jhasan.fragments.serviceFeed;
 
 import java.util.UUID;
@@ -96,6 +95,8 @@ public class MainActivity extends AppCompatActivity
         imgProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                chooseImage();
+                uploadImage();
 
             }
         });
@@ -152,7 +153,6 @@ public class MainActivity extends AppCompatActivity
                                 @Override
                                 public void onSuccess(Uri uri) {
                                     downloadImageUrl = uri.toString();
-                                    ();
                                 }
                             });
                         }
