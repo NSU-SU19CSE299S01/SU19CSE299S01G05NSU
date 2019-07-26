@@ -1,5 +1,6 @@
 package com.project.jhasan.soudagor;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,17 +23,29 @@ import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.project.jhasan.fragments.AddServcie;
 import com.project.jhasan.fragments.serviceFeed;
+
+import java.util.UUID;
 
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
+    private final int PICK_IMAGE_REQUEST = 71;
+    private Uri filepath;
     private NavigationView navigationView;
     private View navHeader;
     private ImageView  imgProfile;
@@ -44,7 +58,9 @@ public class MainActivity extends AppCompatActivity
     private Uri NavPhotoUrl;
     private FirebaseAuth mAuth;
 
-
+    FirebaseStorage storage;
+    StorageReference storageReference;
+    FirebaseDatabase firedatabase;
     GridLayout mainGrid;
 
 
@@ -73,7 +89,16 @@ public class MainActivity extends AppCompatActivity
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         mAuth=FirebaseAuth.getInstance();
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+        firedatabase = FirebaseDatabase.getInstance();
 
+        imgProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
