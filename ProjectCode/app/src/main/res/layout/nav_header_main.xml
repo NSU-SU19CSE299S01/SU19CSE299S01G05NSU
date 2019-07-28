@@ -18,7 +18,7 @@
         android:layout_height="80dp"
         android:layout_gravity="center"
         android:layout_marginBottom="2dp"
-        android:src="@mipmap/addPro" />
+        android:src="@mipmap/addpropic" />
     <TextView
         android:id="@+id/name"
         android:layout_width="match_parent"
