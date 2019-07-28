@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity
 // Name, email address, and profile photo Url
              NavName = user.getDisplayName();
              NavEmail = user.getEmail();
-//             NavPhotoUrl = user.getPhotoUrl();
+            NavPhotoUrl = user.getPhotoUrl();
 
 
             boolean emailVerified = user.isEmailVerified();
@@ -232,7 +232,9 @@ public class MainActivity extends AppCompatActivity
 
         txtName.setText(NavName);
         txtEmail.setText(NavEmail);
-        imgProfile.setImageURI(Uri.parse(downloadImageUrl));
+        if (downloadImageUrl!=null) {
+            imgProfile.setImageURI(Uri.parse(downloadImageUrl));
+        }
 
 
     }
