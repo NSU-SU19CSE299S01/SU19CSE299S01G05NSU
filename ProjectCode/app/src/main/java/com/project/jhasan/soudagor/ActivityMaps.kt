@@ -75,6 +75,28 @@ class ActivityMaps : AppCompatActivity() {
             startActivityForResult(locationPickerIntent, MAP_BUTTON_REQUEST_CODE)
         }
 
+        val mapPoisButton = findViewById<View>(R.id.map_button_with_pois)
+        mapPoisButton.setOnClickListener { _ ->
+            val locationPickerIntent = LocationPickerActivity.Builder()
+                    .withLocation(23.777176, 90.399452)
+                    .withPois(lekuPois)
+                    .build(applicationContext)
+
+            startActivityForResult(locationPickerIntent, MAP_POIS_BUTTON_REQUEST_CODE)
+        }
+
+        val mapStyleButton = findViewById<View>(R.id.map_button_with_style)
+        mapStyleButton.setOnClickListener {
+            val locationPickerIntent = LocationPickerActivity.Builder()
+                    .withLocation(23.777176, 90.399452)
+                    .withMapStyle(R.raw.map_style_retro)
+                    .build(applicationContext)
+            startActivityForResult(locationPickerIntent, MAP_POIS_BUTTON_REQUEST_CODE)
+        }
+
+        initializeLocationPickerTracker()
+    }
+
 
             } else if (requestCode == 2) {
                 val latitude = data.getDoubleExtra(LATITUDE, 0.0)
