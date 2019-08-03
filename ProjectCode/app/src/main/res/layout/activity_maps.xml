@@ -1,27 +1,57 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.project.jhasan.soudagor.MainActivity">
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".MainActivity"
+    >
 
-    <com.google.android.material.appbar.AppBarLayout
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
+    >
+
+
+    <Button
+        android:text="@string/launch_map_picker"
+        android:id="@+id/map_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AlertDialog.AppCompat">
+        android:padding="18dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/button_shape"
+        tools:targetApi="lollipop"
+        />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    <Button
+        android:text="@string/launch_map_picker_with_style"
+        android:id="@+id/map_button_with_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="18dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/button_shape"
+        tools:targetApi="lollipop"
+        />
+    <Button
+        android:text="@string/launch_map_picker_with_pois"
+        android:id="@+id/map_button_with_pois"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="18dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_shape"
+        tools:targetApi="lollipop"
+        />
+</LinearLayout>
 
-    </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_map" />
+</merge>
 
-
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
