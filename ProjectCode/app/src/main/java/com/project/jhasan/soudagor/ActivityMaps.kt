@@ -126,6 +126,11 @@ class ActivityMaps : AppCompatActivity() {
                     Log.d("TIME ZONE NAME****", timeZoneDisplayName)
                 }
 
+                var intent = Intent()
+                intent.putExtra("keyAdd", address)
+                setResult(RESULT_OK, intent)
+
+                startActivityForResult(intent,1001)
 
             } else if (requestCode == 2) {
                 val latitude = data.getDoubleExtra(LATITUDE, 0.0)
