@@ -97,6 +97,35 @@ class ActivityMaps : AppCompatActivity() {
         initializeLocationPickerTracker()
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK && data != null) {
+            Log.d("RESULT****", "OK")
+            if (requestCode == MAP_BUTTON_REQUEST_CODE) {
+                val latitude = data.getDoubleExtra(LATITUDE, 0.0)
+                Log.d("LATITUDE****", latitude.toString())
+                val longitude = data.getDoubleExtra(LONGITUDE, 0.0)
+                Log.d("LONGITUDE****", longitude.toString())
+                val address = data.getStringExtra(LOCATION_ADDRESS)
+                Log.d("ADDRESS****", address.toString())
+                val postalcode = data.getStringExtra(ZIPCODE)
+                Log.d("POSTALCODE****", postalcode.toString())
+                val bundle = data.getBundleExtra(TRANSITION_BUNDLE)
+                Log.d("BUNDLE TEXT****", bundle.getString("test"))
+                val fullAddress = data.getParcelableExtra<Address>(ADDRESS)
+                if (fullAddress != null) {
+                    Log.d("FULL ADDRESS****", fullAddress.toString())
+                }
+                val timeZoneId = data.getStringExtra(TIME_ZONE_ID)
+                if (timeZoneId != null) {
+                    Log.d("TIME ZONE ID****", timeZoneId)
+                }
+                val timeZoneDisplayName = data.getStringExtra(TIME_ZONE_DISPLAY_NAME)
+                if (timeZoneDisplayName != null) {
+                    Log.d("TIME ZONE NAME****", timeZoneDisplayName)
+                }
+
 
             } else if (requestCode == 2) {
                 val latitude = data.getDoubleExtra(LATITUDE, 0.0)
