@@ -65,7 +65,6 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
     FirebaseDatabase firedatabase;
 
 
-
     private FirebaseAuth mAuth;
 
 
@@ -74,17 +73,15 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
     }
 
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
 
-        String[] servicesSpinner={"Automotive","Beauty","Computer","creative", "Event", "Farm+garden","Household","labor/move","travel/vac",
-                                    "other" };
+        String[] servicesSpinner = {"Automotive", "Beauty", "Computer", "creative", "Event", "Farm+garden", "Household", "labor/move", "travel/vac",
+                "other"};
 
-       // List<serviceInfo>serviceInfos=new ArrayList<>();
+        // List<serviceInfo>serviceInfos=new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
 
 
@@ -92,31 +89,32 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
         storageReference = storage.getReference();
         firedatabase = FirebaseDatabase.getInstance();
         // Inflate the layout for this fragment
-        View fragView= inflater.inflate(R.layout.fragment_add_servcie, container, false);
+        View fragView = inflater.inflate(R.layout.fragment_add_servcie, container, false);
 
 
-        serviceName=fragView.findViewById(R.id.editServiceName);
-        serviceFee=fragView.findViewById(R.id.editFee);
-        serviceAddress=fragView.findViewById(R.id.editLocation);
-        serviceDescription=fragView.findViewById(R.id.editDescription);
-        servicePhone=fragView.findViewById(R.id.editPhone);
+        serviceName = fragView.findViewById(R.id.editServiceName);
+        serviceFee = fragView.findViewById(R.id.editFee);
+        serviceAddress = fragView.findViewById(R.id.editLocation);
+        serviceDescription = fragView.findViewById(R.id.editDescription);
+        servicePhone = fragView.findViewById(R.id.editPhone);
 
 
-        Spinner spin=fragView.findViewById(R.id.spinner);
-        btnChoose=fragView.findViewById(R.id.btn_addImage);
+        Spinner spin = fragView.findViewById(R.id.spinner);
+        btnChoose = fragView.findViewById(R.id.btn_addImage);
         imageView = fragView.findViewById(R.id.ImageView);
-        btnDone=fragView.findViewById(R.id.btn_done);
+        btnDone = fragView.findViewById(R.id.btn_done);
 
         spin.setOnItemSelectedListener(this);
 
         //Creating the ArrayAdapter instance having the servicce list
 
-        ArrayAdapter adapterSpin = new ArrayAdapter(this.getActivity(), android.R.layout.simple_spinner_item,servicesSpinner);
+        ArrayAdapter adapterSpin = new ArrayAdapter(this.getActivity(), android.R.layout.simple_spinner_item, servicesSpinner);
         adapterSpin.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         //Setting the ArrayAdapter data on the Spinner
         spin.setAdapter(adapterSpin);
 
+        serviceAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ActivityMaps.class);
@@ -249,6 +247,17 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
                 e.printStackTrace();
             }
         }
+        else if (requestCode == GET_MAP_DATA && resultCode == RESULT_OK && data != null && data.getData() != null){
+            filepath = data.getData();
+            String tempAddress = data.getStringExtra("keyAdd");
+            updateUI(tempAddress);
+        }
+    }
+
+    private void updateUI(String tempAddress) {
+
+        serviceAddress.setText(tempAddress);
+
     }
 
     @Override
