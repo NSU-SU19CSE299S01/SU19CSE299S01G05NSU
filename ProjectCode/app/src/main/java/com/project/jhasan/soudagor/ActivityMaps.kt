@@ -44,6 +44,37 @@ class ActivityMaps : AppCompatActivity() {
             return pois
         }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        StrictMode.setThreadPolicy(
+                StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build())
+        StrictMode.setVmPolicy(StrictMode.VmPolicy.Builder().detectAll().penaltyLog().build())
+        setContentView(R.layout.activity_maps)
+        val mapButton = findViewById<View>(R.id.map_button)
+        mapButton.setOnClickListener {
+            val locationPickerIntent = LocationPickerActivity.Builder()
+                    .withLocation(23.777176, 90.399452)
+                    //.withGeolocApiKey("<PUT API KEY HERE>")
+                    .withSearchZone("bd")
+                    //.withSearchZone(SearchZoneRect(LatLng(26.525467, -18.910366), LatLng(43.906271, 5.394197)))
+                    .withDefaultLocaleSearchZone()
+                    //.shouldReturnOkOnBackPressed()
+                    //.withStreetHidden()
+                    //.withCityHidden()
+                    //.withZipCodeHidden()
+                    //.withSatelliteViewHidden()
+                    //.withGooglePlacesEnabled()
+                    .withGoogleTimeZoneEnabled()
+                    //.withVoiceSearchHidden()
+                    .withUnnamedRoadHidden()
+                    .build(applicationContext)
+
+            //this is optional if you want to return RESULT_OK if you don't set the latitude/longitude and click back button
+            locationPickerIntent.putExtra("test", "this is a test")
+
+            startActivityForResult(locationPickerIntent, MAP_BUTTON_REQUEST_CODE)
+        }
+
 
             } else if (requestCode == 2) {
                 val latitude = data.getDoubleExtra(LATITUDE, 0.0)
