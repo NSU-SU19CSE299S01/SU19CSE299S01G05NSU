@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,7 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.project.jhasan.servicemodel.serviceInfo;
+import com.project.jhasan.soudagor.ActivityMaps;
 import com.project.jhasan.soudagor.R;
 
 import java.io.IOException;
@@ -42,12 +44,15 @@ import static android.app.Activity.RESULT_OK;
  */
 
 
-public class AddServcie extends Fragment implements  AdapterView.OnItemSelectedListener {
+public class AddServcie extends Fragment implements AdapterView.OnItemSelectedListener {
 
 
+    public final static String MESSAGE_KEY = "com.project.jhasan.soudagor.test";
+    private static final String TAG = AddServcie.class.getName();
+    private static final int GET_MAP_DATA = 1001;
 
-    private ImageView btnChoose,btnDone , imageView;
-    private EditText serviceName,serviceFee,serviceAddress,serviceDescription,servicePhone;
+    private ImageView btnChoose, btnDone, imageView;
+    private EditText serviceName, serviceFee, serviceAddress, serviceDescription, servicePhone;
 
 
     private Uri filepath;
@@ -112,6 +117,15 @@ public class AddServcie extends Fragment implements  AdapterView.OnItemSelectedL
         //Setting the ArrayAdapter data on the Spinner
         spin.setAdapter(adapterSpin);
 
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ActivityMaps.class);
+                startActivityForResult(intent, GET_MAP_DATA);
+
+
+            }
+        });
+
 
         // Choose image
 
@@ -134,7 +148,7 @@ public class AddServcie extends Fragment implements  AdapterView.OnItemSelectedL
         });
 
 
-       return fragView;
+        return fragView;
 
     }
 
@@ -164,17 +178,16 @@ public class AddServcie extends Fragment implements  AdapterView.OnItemSelectedL
     }
 
     private String downloadImageUrl;
-    private  String serviceCategory;
+    private String serviceCategory;
 
     private void uploadImage() {
 
-        if(filepath != null)
-        {
+        if (filepath != null) {
             final ProgressDialog progressDialog = new ProgressDialog(getActivity());
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
-            final StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
+            final StorageReference ref = storageReference.child("images/" + UUID.randomUUID().toString());
             ref.putFile(filepath)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -194,15 +207,15 @@ public class AddServcie extends Fragment implements  AdapterView.OnItemSelectedL
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            Toast.makeText(AddServcie.this.getActivity(), "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddServcie.this.getActivity(), "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                            double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot
                                     .getTotalByteCount());
-                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                            progressDialog.setMessage("Uploaded " + (int) progress + "%");
                         }
                     });
 
@@ -212,25 +225,27 @@ public class AddServcie extends Fragment implements  AdapterView.OnItemSelectedL
 
     private void chooseImage() {
 
-            Intent intent = new Intent();
-            intent.setType("image/*");
-            intent.setAction(Intent.ACTION_GET_CONTENT);
-            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
-                && data != null && data.getData() != null )
-        {
+        Bundle bundle = data.getExtras();
+
+        Log.d(TAG, "onActivityResult called with " + data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
+                && data != null && data.getData() != null) {
             filepath = data.getData();
+
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), filepath);
                 imageView.setImageBitmap(bitmap);
-            }
-            catch (IOException e)
-            {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -239,13 +254,13 @@ public class AddServcie extends Fragment implements  AdapterView.OnItemSelectedL
     @Override
     public void onItemSelected(AdapterView<?> parentview, View selectedItemview, int position, long id) {
 
-        String item= parentview.getItemAtPosition(position).toString();
-        CharSequence text=item;
+        String item = parentview.getItemAtPosition(position).toString();
+        CharSequence text = item;
 
         if (item != null) {
             Toast.makeText(getContext(), item,
                     Toast.LENGTH_SHORT).show();
-            serviceCategory=item;
+            serviceCategory = item;
 
         }
         Toast.makeText(getContext(), "Selected",
@@ -261,20 +276,19 @@ public class AddServcie extends Fragment implements  AdapterView.OnItemSelectedL
     }
 
 
+}
 
-    }
 
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+/**
+ * This interface must be implemented by activities that contain this
+ * fragment to allow an interaction in this fragment to be communicated
+ * to the activity and potentially other fragments contained in that
+ * activity.
+ * <p>
+ * See the Android Training lesson <a href=
+ * "http://developer.android.com/training/basics/fragments/communicating.html"
+ * >Communicating with Other Fragments</a> for more information.
+ */
 //    public interface OnFragmentInteractionListener {
 //        // TODO: Update argument type and name
 //        void onFragmentInteraction(Uri uri);
