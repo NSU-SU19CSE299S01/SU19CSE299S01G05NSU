@@ -42,7 +42,6 @@ import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
-
     private final int PICK_IMAGE_REQUEST = 71;
     private Uri filepath;
     private NavigationView navigationView;
@@ -199,7 +198,7 @@ public class MainActivity extends AppCompatActivity
                     Toast.makeText(MainActivity.this,"Clicked at index"+finalI,Toast.LENGTH_SHORT).show();
                     if (finalI == 0){
                         serviceFeed fragment = new serviceFeed();
-                        fragment.categoryName = "computer";
+                        fragment.categoryName = "ALL";
                         getSupportFragmentManager().beginTransaction()
                                 .add(R.id.container, fragment)
                                 .addToBackStack(null)
@@ -207,13 +206,21 @@ public class MainActivity extends AppCompatActivity
                     }
                     else if (finalI==1){
                         serviceFeed fragment = new serviceFeed();
-                        fragment.categoryName="ALL";
+                        fragment.categoryName="Beauty";
                         getSupportFragmentManager().beginTransaction()
                                 .add(R.id.container, fragment)
                                 .addToBackStack(null)
                                 .commit();
                     }
                     else if (finalI==2){
+                        serviceFeed fragment = new serviceFeed();
+                        fragment.categoryName="ALL";
+                        getSupportFragmentManager().beginTransaction()
+                                .add(R.id.container, fragment)
+                                .addToBackStack(null)
+                                .commit();
+                    }
+                    else if (finalI==3){
                         serviceFeed fragment = new serviceFeed();
                         fragment.categoryName="ALL";
                         getSupportFragmentManager().beginTransaction()
@@ -243,12 +250,12 @@ public class MainActivity extends AppCompatActivity
 
         txtName.setText(NavName);
         txtEmail.setText(NavEmail);
-        imgProfile.setImageURI(Uri.parse(downloadImageUrl));
+        if (downloadImageUrl!=null) {
+            imgProfile.setImageURI(Uri.parse(downloadImageUrl));
+        }
 
 
     }
-
-
 
     @Override
     public void onBackPressed() {
