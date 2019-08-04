@@ -214,7 +214,7 @@ public class MainActivity extends AppCompatActivity
                     }
                     else if (finalI==2){
                         serviceFeed fragment = new serviceFeed();
-                        fragment.categoryName="ALL";
+                        fragment.categoryName="creative";
                         getSupportFragmentManager().beginTransaction()
                                 .add(R.id.container, fragment)
                                 .addToBackStack(null)
@@ -222,7 +222,15 @@ public class MainActivity extends AppCompatActivity
                     }
                     else if (finalI==3){
                         serviceFeed fragment = new serviceFeed();
-                        fragment.categoryName="ALL";
+                        fragment.categoryName="Computer";
+                        getSupportFragmentManager().beginTransaction()
+                                .add(R.id.container, fragment)
+                                .addToBackStack(null)
+                                .commit();
+                    }
+                    else if (finalI==4){
+                        serviceFeed fragment = new serviceFeed();
+                        fragment.categoryName="Farm+garden";
                         getSupportFragmentManager().beginTransaction()
                                 .add(R.id.container, fragment)
                                 .addToBackStack(null)
