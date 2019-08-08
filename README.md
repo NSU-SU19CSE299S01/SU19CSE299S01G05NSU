@@ -7,7 +7,37 @@ Section: 01
 Semester: Summer-19
 
 ---
-Project details:
+<html><body><p align="center">
+  <img width="460" height="300" src="https://elmsprodcdnendpoint.azureedge.net/attachments/15/2bfe67c5-2678-e011-969d-0030487d8897/46f5b6ce-3ea8-47ed-8444-80b87ed980cd.png">
+</p>
+
+<p align ="center"><b>Project Name</b> : SU19CSE299S01G05NSU (Soudagor)</p>
+
+<p align ="center"><b>Course</b> : CSE299</p>
+
+<p align ="center"><b>Section</b> : 01</p>
+
+<p align ="center"><b>Semester</b> : Summer 2019</p>
+
+<p align ="center"><b>Instructor</b> : Shaikh Shawon Arefin Shimon</p>
+
+<p align ="center"><b>Group No</b> - 05</p>
+
+<p align ="center"><b>Member</b>:</p>
+
+<p align ="center"><b>Name:<b>Md. Jahid Hasan Naiem</b></p>
+
+<p align ="center"><b>ID:</b>- 162-0266-042</p>
+
+<p align ="center"><b>Email:</b>- [jahid.naiem@northsouth.edu]</p>
+
+ <p align ="center"><b>GitHub Repo Link</b> : https://github.com/jhnaiem/SU19CSE299S01G05NSU</p>
+
+<p align ="center"><b>Date Prepared</b>: 12/06/19</p>
+</body>
+</html>
+---
+**Project details:**
 
 Project idea: The project is about a freelancing apps that’ll help unemployed people specially the women who knows tailoring, cooking, handicrafts etc. to open a home business and can take orders from home also can deliver with the help of delivery service. They can use the app to be self-dependent without any large investment.
  One can post his or her service or skill on the app with proper details. Those who need the service can order the service, can select payment method and can get deliver through delivery service.
@@ -15,7 +45,7 @@ The problem I am trying to solve: There are so many unemployed but skilled peopl
 The application will help unemployed people to be self-employed. They can use the app to be self-dependent without any large investment.
 Basically, earning by giving service using one’s skill and hobby.
 
-Features:
+**Features:**
 
 1)	Individual profile (both for user and service provider)
 2)	Services category
@@ -24,17 +54,25 @@ Features:
 5)	Payment method
 6)	Maps
 
-Technology:
+**Technology** :
 
-1. Android Studio
-2. Google’s services
-3. Firebase
+1. Back-End:
+  1. Firebase
+2. Front-End:
+  1. JAVA
+  2. KOTLIN
+  3. XML
+3. IDE: Android Studio
 
-Monetization/Business plan:
+**Monetisation /Business plan:**
 
 There will basically two payment methods there are cash on delivery and Bkash. If any transaction for a service is made through cash on delivery or Bkash then the service provider will have to pay a small percentage of the transaction like 3 % through Bkash. If he or she doesn’t pay the charge then his or her account will be blocked.
 
 I will promote third-party brands and products and charge them to place their offer/ logo in the app or send out a push notification. I will list other businesses and promote a specific business to the top of the list.
+
+**Payment Methods** :
+
+We will be using Bkash, Credit/Debit Cards as our basic payment methods for any kind of transactions.
 
 ---
 ## License & copyright
