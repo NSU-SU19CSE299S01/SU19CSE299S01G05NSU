@@ -47,7 +47,9 @@ Basically, earning by giving service using one’s skill and hobby.
 
 **Features:**
 
-1)	Individual profile (both for user and service provider)
+1)	Individual profile (both for consumer and service provider)
+        1a) Consumer Profile: In the profile information there will be Name , Email and Photo of the user. Profile information will be shown in the navigation header. User can add profile pic from the header.
+        2a)Service provider profile : same function as consumer profile.
 2)	Services category
 3)	Details of individual’s service (photos, location, cost etc.)
 4)	Delivery method
