@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,6 +110,7 @@ public class MainActivity extends AppCompatActivity
                         .add(R.id.container, fragment)
                         .addToBackStack(null)
                         .commit();
+                fab.setVisibility(View.GONE);
 
 
 
