@@ -1,5 +1,6 @@
 package com.project.jhasan.soudagor;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,17 +23,28 @@ import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.project.jhasan.fragments.AddServcie;
 import com.project.jhasan.fragments.serviceFeed;
+
+import java.util.UUID;
 
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
-
+    private final int PICK_IMAGE_REQUEST = 71;
+    private Uri filepath;
     private NavigationView navigationView;
     private View navHeader;
     private ImageView  imgProfile;
@@ -44,7 +57,9 @@ public class MainActivity extends AppCompatActivity
     private Uri NavPhotoUrl;
     private FirebaseAuth mAuth;
 
-
+    FirebaseStorage storage;
+    StorageReference storageReference;
+    FirebaseDatabase firedatabase;
     GridLayout mainGrid;
 
 
@@ -69,17 +84,31 @@ public class MainActivity extends AppCompatActivity
         navHeader = navigationView.getHeaderView(0);
         txtName = (TextView) navHeader.findViewById(R.id.name);
         txtEmail = (TextView) navHeader.findViewById(R.id.email);
-        imgProfile = (ImageView) navHeader.findViewById(R.id.imageView);
+        imgProfile = (ImageView) navHeader.findViewById(R.id.imageViewPro);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         mAuth=FirebaseAuth.getInstance();
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+        firedatabase = FirebaseDatabase.getInstance();
 
+        imgProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chooseImage();
+                uploadImage();
+
+            }
+        });
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                AddServcie fragment = new AddServcie();
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.container, fragment)
+                        .addToBackStack(null)
+                        .commit();
 
 
 
@@ -99,9 +128,72 @@ public class MainActivity extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+       // ImageView proImage= navigationView.getHeaderView(0).findViewById(R.id.imageViewPro);
+
+        if (downloadImageUrl==null) {
 
 
+            }else {
+            Glide.with(getApplicationContext())
+                    .load(downloadImageUrl)
+                    .into(imgProfile);
+        }
 
+
+    }
+
+
+    private String downloadImageUrl;
+
+    private void uploadImage() {
+
+        if(filepath != null)
+        {
+            final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+            progressDialog.setTitle("Uploading...");
+            progressDialog.show();
+
+            final StorageReference ref = storageReference.child("ProfileImages/"+ UUID.randomUUID().toString());
+            ref.putFile(filepath)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            progressDialog.dismiss();
+                            Toast.makeText(MainActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                            ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    downloadImageUrl = uri.toString();
+                                }
+                            });
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            progressDialog.dismiss();
+                            Toast.makeText(MainActivity.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                                    .getTotalByteCount());
+                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                        }
+                    });
+
+        }
+
+    }
+
+    private void chooseImage() {
+
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
 
     private void setSingleEvent(GridLayout mainGrid) {
@@ -116,7 +208,7 @@ public class MainActivity extends AppCompatActivity
                     Toast.makeText(MainActivity.this,"Clicked at index"+finalI,Toast.LENGTH_SHORT).show();
                     if (finalI == 0){
                         serviceFeed fragment = new serviceFeed();
-                        fragment.categoryName = "computer";
+                        fragment.categoryName = "ALL";
                         getSupportFragmentManager().beginTransaction()
                                 .add(R.id.container, fragment)
                                 .addToBackStack(null)
@@ -124,12 +216,61 @@ public class MainActivity extends AppCompatActivity
                     }
                     else if (finalI==1){
                         serviceFeed fragment = new serviceFeed();
-                        fragment.categoryName="ALL";
+                        fragment.categoryName="Beauty";
                         getSupportFragmentManager().beginTransaction()
                                 .add(R.id.container, fragment)
                                 .addToBackStack(null)
                                 .commit();
                     }
+                    else if (finalI==2){
+                        serviceFeed fragment = new serviceFeed();
+                        fragment.categoryName="creative";
+                        getSupportFragmentManager().beginTransaction()
+                                .add(R.id.container, fragment)
+                                .addToBackStack(null)
+                                .commit();
+                    }
+                    else if (finalI==3){
+                        serviceFeed fragment = new serviceFeed();
+                        fragment.categoryName="computer";
+                        getSupportFragmentManager().beginTransaction()
+                                .add(R.id.container, fragment)
+                                .addToBackStack(null)
+                                .commit();
+                    }
+                    else if (finalI==4){
+                        serviceFeed fragment = new serviceFeed();
+                        fragment.categoryName="Farm+garden";
+                        getSupportFragmentManager().beginTransaction()
+                                .add(R.id.container, fragment)
+                                .addToBackStack(null)
+                                .commit();
+                    }
+                    else if (finalI==5){
+                        serviceFeed fragment = new serviceFeed();
+                        fragment.categoryName="Automotive";
+                        getSupportFragmentManager().beginTransaction()
+                                .add(R.id.container, fragment)
+                                .addToBackStack(null)
+                                .commit();
+                    }
+                    else if (finalI==6){
+                        serviceFeed fragment = new serviceFeed();
+                        fragment.categoryName="Household";
+                        getSupportFragmentManager().beginTransaction()
+                                .add(R.id.container, fragment)
+                                .addToBackStack(null)
+                                .commit();
+                    }
+                    else if (finalI==7){
+                        serviceFeed fragment = new serviceFeed();
+                        fragment.categoryName="labor";
+                        getSupportFragmentManager().beginTransaction()
+                                .add(R.id.container, fragment)
+                                .addToBackStack(null)
+                                .commit();
+                    }
+
 
                 }
             });
@@ -142,7 +283,7 @@ public class MainActivity extends AppCompatActivity
 // Name, email address, and profile photo Url
              NavName = user.getDisplayName();
              NavEmail = user.getEmail();
-             NavPhotoUrl = user.getPhotoUrl();
+            NavPhotoUrl = user.getPhotoUrl();
 
 
             boolean emailVerified = user.isEmailVerified();
@@ -152,12 +293,12 @@ public class MainActivity extends AppCompatActivity
 
         txtName.setText(NavName);
         txtEmail.setText(NavEmail);
-        imgProfile.setImageURI(NavPhotoUrl);
+        if (downloadImageUrl!=null) {
+            imgProfile.setImageURI(Uri.parse(downloadImageUrl));
+        }
 
 
     }
-
-
 
     @Override
     public void onBackPressed() {
