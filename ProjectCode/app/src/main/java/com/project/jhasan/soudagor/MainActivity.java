@@ -23,6 +23,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -127,7 +128,16 @@ public class MainActivity extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+       // ImageView proImage= navigationView.getHeaderView(0).findViewById(R.id.imageViewPro);
 
+        if (downloadImageUrl==null) {
+
+
+            }else {
+            Glide.with(getApplicationContext())
+                    .load(downloadImageUrl)
+                    .into(imgProfile);
+        }
 
 
     }
@@ -143,7 +153,7 @@ public class MainActivity extends AppCompatActivity
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
-            final StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
+            final StorageReference ref = storageReference.child("ProfileImages/"+ UUID.randomUUID().toString());
             ref.putFile(filepath)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -222,7 +232,7 @@ public class MainActivity extends AppCompatActivity
                     }
                     else if (finalI==3){
                         serviceFeed fragment = new serviceFeed();
-                        fragment.categoryName="Computer";
+                        fragment.categoryName="computer";
                         getSupportFragmentManager().beginTransaction()
                                 .add(R.id.container, fragment)
                                 .addToBackStack(null)
@@ -236,6 +246,31 @@ public class MainActivity extends AppCompatActivity
                                 .addToBackStack(null)
                                 .commit();
                     }
+                    else if (finalI==5){
+                        serviceFeed fragment = new serviceFeed();
+                        fragment.categoryName="Automotive";
+                        getSupportFragmentManager().beginTransaction()
+                                .add(R.id.container, fragment)
+                                .addToBackStack(null)
+                                .commit();
+                    }
+                    else if (finalI==6){
+                        serviceFeed fragment = new serviceFeed();
+                        fragment.categoryName="Household";
+                        getSupportFragmentManager().beginTransaction()
+                                .add(R.id.container, fragment)
+                                .addToBackStack(null)
+                                .commit();
+                    }
+                    else if (finalI==7){
+                        serviceFeed fragment = new serviceFeed();
+                        fragment.categoryName="labor";
+                        getSupportFragmentManager().beginTransaction()
+                                .add(R.id.container, fragment)
+                                .addToBackStack(null)
+                                .commit();
+                    }
+
 
                 }
             });
@@ -248,7 +283,7 @@ public class MainActivity extends AppCompatActivity
 // Name, email address, and profile photo Url
              NavName = user.getDisplayName();
              NavEmail = user.getEmail();
-//             NavPhotoUrl = user.getPhotoUrl();
+            NavPhotoUrl = user.getPhotoUrl();
 
 
             boolean emailVerified = user.isEmailVerified();
