@@ -79,7 +79,8 @@ public class AddServcie extends Fragment implements  AdapterView.OnItemSelectedL
         String[] servicesSpinner={"Automotive","Beauty","Computer","creative", "Event", "Farm+garden","Household","labor/move","travel/vac",
                                     "other" };
 
-       // List<serviceInfo>serviceInfos=new ArrayList<>();
+
+
         mAuth = FirebaseAuth.getInstance();
 
 
