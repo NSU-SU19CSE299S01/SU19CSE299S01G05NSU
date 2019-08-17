@@ -126,6 +126,14 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
+        if (downloadImageUrl==null) {
+
+
+            }else {
+            Glide.with(getApplicationContext())
+                    .load(downloadImageUrl)
+                    .into(imgProfile);
+        }
 
 
     }
