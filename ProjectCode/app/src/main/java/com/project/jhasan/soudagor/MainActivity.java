@@ -23,11 +23,11 @@ import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
@@ -35,6 +35,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.project.jhasan.fragments.AddServcie;
 import com.project.jhasan.fragments.serviceFeed;
 
 import java.util.UUID;
@@ -42,7 +43,6 @@ import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
-
     private final int PICK_IMAGE_REQUEST = 71;
     private Uri filepath;
     private NavigationView navigationView;
@@ -104,8 +104,11 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                AddServcie fragment = new AddServcie();
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.container, fragment)
+                        .addToBackStack(null)
+                        .commit();
 
 
 
@@ -125,6 +128,7 @@ public class MainActivity extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+       // ImageView proImage= navigationView.getHeaderView(0).findViewById(R.id.imageViewPro);
 
         if (downloadImageUrl==null) {
 
@@ -149,7 +153,7 @@ public class MainActivity extends AppCompatActivity
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
-            final StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
+            final StorageReference ref = storageReference.child("ProfileImages/"+ UUID.randomUUID().toString());
             ref.putFile(filepath)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -204,7 +208,7 @@ public class MainActivity extends AppCompatActivity
                     Toast.makeText(MainActivity.this,"Clicked at index"+finalI,Toast.LENGTH_SHORT).show();
                     if (finalI == 0){
                         serviceFeed fragment = new serviceFeed();
-                        fragment.categoryName = "computer";
+                        fragment.categoryName = "ALL";
                         getSupportFragmentManager().beginTransaction()
                                 .add(R.id.container, fragment)
                                 .addToBackStack(null)
@@ -212,12 +216,61 @@ public class MainActivity extends AppCompatActivity
                     }
                     else if (finalI==1){
                         serviceFeed fragment = new serviceFeed();
-                        fragment.categoryName="ALL";
+                        fragment.categoryName="Beauty";
                         getSupportFragmentManager().beginTransaction()
                                 .add(R.id.container, fragment)
                                 .addToBackStack(null)
                                 .commit();
                     }
+                    else if (finalI==2){
+                        serviceFeed fragment = new serviceFeed();
+                        fragment.categoryName="creative";
+                        getSupportFragmentManager().beginTransaction()
+                                .add(R.id.container, fragment)
+                                .addToBackStack(null)
+                                .commit();
+                    }
+                    else if (finalI==3){
+                        serviceFeed fragment = new serviceFeed();
+                        fragment.categoryName="computer";
+                        getSupportFragmentManager().beginTransaction()
+                                .add(R.id.container, fragment)
+                                .addToBackStack(null)
+                                .commit();
+                    }
+                    else if (finalI==4){
+                        serviceFeed fragment = new serviceFeed();
+                        fragment.categoryName="Farm+garden";
+                        getSupportFragmentManager().beginTransaction()
+                                .add(R.id.container, fragment)
+                                .addToBackStack(null)
+                                .commit();
+                    }
+                    else if (finalI==5){
+                        serviceFeed fragment = new serviceFeed();
+                        fragment.categoryName="Automotive";
+                        getSupportFragmentManager().beginTransaction()
+                                .add(R.id.container, fragment)
+                                .addToBackStack(null)
+                                .commit();
+                    }
+                    else if (finalI==6){
+                        serviceFeed fragment = new serviceFeed();
+                        fragment.categoryName="Household";
+                        getSupportFragmentManager().beginTransaction()
+                                .add(R.id.container, fragment)
+                                .addToBackStack(null)
+                                .commit();
+                    }
+                    else if (finalI==7){
+                        serviceFeed fragment = new serviceFeed();
+                        fragment.categoryName="labor";
+                        getSupportFragmentManager().beginTransaction()
+                                .add(R.id.container, fragment)
+                                .addToBackStack(null)
+                                .commit();
+                    }
+
 
                 }
             });
@@ -246,8 +299,6 @@ public class MainActivity extends AppCompatActivity
 
 
     }
-
-
 
     @Override
     public void onBackPressed() {
