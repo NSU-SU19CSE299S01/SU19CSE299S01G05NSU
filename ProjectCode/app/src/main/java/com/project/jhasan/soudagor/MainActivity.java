@@ -246,6 +246,23 @@ public class MainActivity extends AppCompatActivity
                                 .addToBackStack(null)
                                 .commit();
                     }
+                    else if (finalI==6){
+                        serviceFeed fragment = new serviceFeed();
+                        fragment.categoryName="Household";
+                        getSupportFragmentManager().beginTransaction()
+                                .add(R.id.container, fragment)
+                                .addToBackStack(null)
+                                .commit();
+                    }
+                    else if (finalI==7){
+                        serviceFeed fragment = new serviceFeed();
+                        fragment.categoryName="labor";
+                        getSupportFragmentManager().beginTransaction()
+                                .add(R.id.container, fragment)
+                                .addToBackStack(null)
+                                .commit();
+                    }
+
 
                 }
             });
