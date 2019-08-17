@@ -78,7 +78,7 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
                              Bundle savedInstanceState) {
 
 
-        String[] servicesSpinner = {"Automotive", "Beauty", "Computer", "creative", "Event", "Farm+garden", "Household", "labor/move", "travel/vac",
+        String[] servicesSpinner = {"Automotive", "Beauty", "computer", "creative", "Event", "Farm+garden", "Household", "labor", "travel/vac",
                 "other"};
 
         // List<serviceInfo>serviceInfos=new ArrayList<>();
@@ -232,7 +232,8 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Bundle bundle = data.getExtras();
+
+        Bundle bundles = data.getExtras();
 
         Log.d(TAG, "onActivityResult called with " + data);
 
@@ -249,7 +250,7 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
         }
         else if (requestCode == GET_MAP_DATA && resultCode == RESULT_OK && data != null && data.getData() != null){
             filepath = data.getData();
-            String tempAddress = data.getStringExtra("keyAdd");
+            String tempAddress = bundles.getString("keyAdd");
             updateUI(tempAddress);
         }
     }
