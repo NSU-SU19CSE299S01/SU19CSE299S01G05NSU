@@ -42,23 +42,38 @@ Semester: Summer-19
 Project idea: The project is about a freelancing apps that’ll help unemployed people specially the women who knows tailoring, cooking, handicrafts etc. to open a home business and can take orders from home also can deliver with the help of delivery service. They can use the app to be self-dependent without any large investment.
  One can post his or her service or skill on the app with proper details. Those who need the service can order the service, can select payment method and can get deliver through delivery service.
 The problem I am trying to solve: There are so many unemployed but skilled people where large number are women. I am trying to convert the large number of skilled but unemployed, dependent people basically women into working and self-dependent women. Women won’t be burden anymore. People can earn with the help of their skill from home.
-The application will help unemployed people to be self-employed. They can use the app to be self-dependent without any large investment.
+The application will help unemployed people to be self-employed. They can use the app to be self-dependent without any large investment.<br/>
 Basically, earning by giving service using one’s skill and hobby.
 
 **Features:**
 
-1)	Individual profile (both for consumer and service provider)
-        1a) Consumer Profile: In the profile information there will be Name , Email and Photo of the user. Profile information will be shown in the navigation header. User can add profile pic from the header.
-        2a)Service provider profile : same function as consumer profile.
-2)	Services category
-3)	Details of individual’s service (photos, location, cost etc.)
-4)	Delivery method
-5)	Payment method
-6)	Maps
+1)	Splash screen
+2)	Individual profile (both for consumer and service provider)
+
+1a. Consumer Profile: In the profile information there will be Name , Email and Photo of the user. Profile information will be shown in the navigation header. User can add profile pic from the header.
+1b. Service provider profile : same function as consumer profile.
+
+
+
+3)	Navigation Drawer
+4)	Floating action button
+5)	Services category
+
+5a.	There are seven category of services mentioned in the app and there is also an other section where user can add their modified service name.
+
+5b.	The categories are Beauty, Household, Automotive, Gardening, Labor
+
+
+6)	Adding service
+7)	Details of individual’s service (photos, location, cost etc.)
+8)	Delivery method
+9)	Payment method
+10)	Maps
+
 
 **Technology** :
 
-1. Back-End:
+1. Back-End:<br/>
   1. Firebase
 2. Front-End:
   1. JAVA
