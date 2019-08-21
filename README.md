@@ -82,7 +82,9 @@ It is the welcome screen of the mobile app that the users will encounter while l
 </p>
 </ol>
 <p>
+  <b>
 2) Individual profile (both for consumer and service provider).
+    </b>
 </p>
 <ol>
 <p>
@@ -95,7 +97,9 @@ navigation header. User can add profile pic from the header.
 </p>
 </ol>
 <p>
+  <b>
 3) Navigation Drawer
+    </b>
 </p>
 <p>
 User can swipe from left to right on the mobile screen on tap the button on the title bar to open the navigation drawer.
@@ -112,7 +116,9 @@ logged user session.
 </p>
 </ol>
 <p>
+  <b>
 4) Navigation header
+    </b>
 </p>
 <ol>
 <p>
@@ -123,7 +129,9 @@ The user can also update profile picture by clicking in the section profile pict
 </p>   
 </ol>
 <p>
+  <b>
 5) Floating action button
+    </b>
 </p>
 <ol>
 <p>
@@ -131,7 +139,9 @@ This a a floating button visible in the service feed screen. By click on the but
 </p> 
 </ol>
 <p>
+  <b>
 6) Services category
+    </b>
 </p>
 <ol>
 <p>
@@ -143,7 +153,9 @@ also another section where user can add their modified service name.
 </p>
 </ol>
 <p>
+  <b>
 7) Adding services
+    </b>
 </p>
 <ol>
 <p>
@@ -152,7 +164,9 @@ By inputting the data user can add a service on the add.
 </p>
 </ol>
 <p>
+  <b>
 8) Details of an individual’s service (photos, location, cost, etc.)
+    </b>
 </p>
 <ol>
 <p>
@@ -160,7 +174,9 @@ There is another activity that shows the detail information of individual servic
 </p>
 </ol>
 <p>
+  <b>
 9) Delivery method
+    </b>
 </p>
 <ol>
 <p>
@@ -168,7 +184,9 @@ I will use pathao to delvier the product primarily later i will add courier serv
 </p>
 </ol>
 <p>
+  <b>
 10) Payment method
+    </b>
 </p>
 <ol>
 <p>
@@ -177,7 +195,9 @@ Service provider can also set delivery method either cash on delivery or Bkash.
 </p>
 </ol>
 <p>
+  <b>
 11) Maps
+    </b>
 </p>
 <ol>
 <p>
@@ -204,8 +224,9 @@ This will show map with little style and colour.
 <ins><u><strong>Technology</strong></u></ins>
 </p>
 <p>
+  <b>
 1. Back-End
-
+</b>
 
 <ol> - Firebase
 <p>Firebase is platform which allow to build web and mobile applications without server side programming language. One can store users data on its real-time database which sync data among users data in no time.
@@ -228,7 +249,9 @@ The Firebase Realtime Database is a cloud-hosted NoSQL database that lets me sto
 </ol>
 
 <p>
+  <b>
 2. Front-End
+    </b>
 </p>
 <ol>
 <p>
