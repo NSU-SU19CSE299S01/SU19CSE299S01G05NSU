@@ -286,10 +286,9 @@ any kind of transactions.
 
 
 ---
- License & copyright
-© Md. Jahid Hasan Naiem, North South University
-<p>
-Licensed under [MIT License](LICENSE).
-</p>
 </body>
 </html>
+**License & copyright**
+© Md. Jahid Hasan Naiem, North South University
+
+Licensed under [MIT License](LICENSE).
