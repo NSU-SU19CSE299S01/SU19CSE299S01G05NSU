@@ -23,7 +23,7 @@ Semester: Summer-19
 
 <p align ="center"><b>Group No:</b>  05</p>
 
-<p align ="center"><b><u>Member</u></b></p>
+<p align ="center"><ins><b><u>Member</u></b></p></ins>
 
 <p align ="center"><b>Name:</b>Md. Jahid Hasan Naiem</p>
 
@@ -38,10 +38,10 @@ Semester: Summer-19
 
 ---
 <p align ="center">
-  <strong><u><b>Project details</b> </u></strong>
+  <ins><strong><u><b>Project details</b> </u></strong></ins>
 </p>
 <p>
-<u>Project idea:</u>
+<ins><u>Project idea:</u></ins>
 </p>
 <p>
 The project is about freelancing apps that’ll help unemployed people
@@ -70,7 +70,7 @@ use the app to be self-dependent without any large investment.
 Basically, earning by giving service using one’s skill and hobby.
 </p>
 <p align ="center">
- <strong><u>Features</u></strong>
+ <ins><strong><u>Features</u></strong></ins>
 </p>
 <p>
 1) Splash screen
@@ -85,12 +85,12 @@ It is the welcome screen of the mobile app that the users will encounter while l
 </p>
 <ol>
 <p>
-- <u>Consumer Profile</u>: In the profile information there will be Name,
+- <ins><u>Consumer Profile</u></ins>: In the profile information there will be Name,
 Email, and Photo of the user. The profile information will be shown in the
 navigation header. User can add profile pic from the header.
 </p>
 <p>
-- <u>Service provider profile</u>: same function as consumer profile.
+- <ins><u>Service provider profile</u></ins>: same function as consumer profile.
 </p>
 </ol>
 <p>
@@ -200,7 +200,7 @@ This will show map with little style and colour.
 <strong></strong>
 </p>
 <p align ="center">
-<u><strong>Technology</strong></u>
+<ins><u><strong>Technology</strong></u></ins>
 </p>
 <p>
 1. Back-End
@@ -213,14 +213,14 @@ This will show map with little style and colour.
 For the app i have used Firebase Authentication, Real time database, Firebase Storage. 
 </p>
 <p>
-<u>Firebase Authentication:</u> I have used this to manage user serssion and to authenticate user to the app. The app will authenticate on the basis of Email and Password.
+<ins><u>Firebase Authentication:</u></ins> I have used this to manage user serssion and to authenticate user to the app. The app will authenticate on the basis of Email and Password.
 </p>
 <p>
-<u>Firebase Storage:</u> It is a stand-alone solution for uploading user generated content like images and videos from an iOS and Android device. 
+<ins><u>Firebase Storage:</u></ins> It is a stand-alone solution for uploading user generated content like images and videos from an iOS and Android device. 
 I have used it to upload service images and profile pictures.
 </p>
 <p>
-<u>Firebase Datbase:</u> 
+<ins><u>Firebase Datbase:</u></ins>
 The Firebase Realtime Database is a cloud-hosted NoSQL database that lets me store and sync data between users in realtime.Database helps the app to store service information which the user input when adding a service. The app can also use the datas in real time . 
 </p>
 
@@ -253,7 +253,7 @@ Kotlin is a statically typed programming language that runs on the JVM and is co
 </p>
 </ol>
 <p align ="center">
-<strong> <u>Monetization/Business plan</u></strong>
+<ins><strong> <u>Monetization/Business plan</u></strong></ins>
 </p>
 <p>
 There will basically two payment methods there is cash on delivery and
@@ -275,7 +275,7 @@ We will be using Bkash, Credit/Debit Cards as our basic payment methods for
 any kind of transactions.
 </p>
 <p>
-<u><strong>References:</strong></u>
+<ins><u><strong>References:</strong></u></ins>
 </p>
 <p>
 1.https://codelabs.developers.google.com/
