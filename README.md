@@ -29,7 +29,7 @@ Semester: Summer-19
 
 <p align ="center"><b>ID:</b> 162-0266-042</p>
 
-<p align ="center"><b>Email:</b>- [jahid.naiem@northsouth.edu]</p>
+<p align ="center"><b>Email:</b> [jahid.naiem@northsouth.edu]</p>
 
  <p align ="center"><b>GitHub Repo Link</b> : https://github.com/jhnaiem/SU19CSE299S01G05NSU</p>
 
@@ -38,7 +38,7 @@ Semester: Summer-19
 
 ---
 <p align ="center">
-  <center><strong><u><b>Project details</b> </u></strong></center>
+  <strong><u><b>Project details</b> </u></strong>
 </p>
 <p>
 <u>Project idea:</u>
@@ -279,6 +279,8 @@ any kind of transactions.
 </p>
 <p>
 1.https://codelabs.developers.google.com/
+</p>
+<p>
 2.https://firebase.google.com
 </p>
 
