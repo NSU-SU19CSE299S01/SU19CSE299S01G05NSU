@@ -35,7 +35,7 @@ Semester: Summer-19
 
 <p align ="center"><b>Date Prepared</b>: 12/06/19</p>
 </body>
-</html>
+
 ---
 <p>
 <center><strong><u></u></strong> </center>
@@ -286,6 +286,7 @@ any kind of transactions.
 </p>
 
 <br/>
+</html>
 ---
 ## License & copyright
 © Md. Jahid Hasan Naiem, North South University
