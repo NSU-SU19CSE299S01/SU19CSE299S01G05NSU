@@ -266,7 +266,7 @@ public class MainActivity extends AppCompatActivity
                     }
                     else if (finalI==7){
                         serviceFeed fragment = new serviceFeed();
-                        fragment.categoryName="labor";
+                        fragment.categoryName="labour";
                         getSupportFragmentManager().beginTransaction()
                                 .add(R.id.container, fragment)
                                 .addToBackStack(null)
