@@ -34,7 +34,7 @@ Semester: Summer-19
  <p align ="center"><b>GitHub Repo Link</b> : https://github.com/jhnaiem/SU19CSE299S01G05NSU</p>
 
 <p align ="center"><b>Date Prepared</b>: 12/06/19</p>
-</body>
+
 
 ---
 <p align ="center">
@@ -285,9 +285,10 @@ any kind of transactions.
 2.https://firebase.google.com
 </p>
 
+</body>
 </html>
----
 ## License & copyright
 © Md. Jahid Hasan Naiem, North South University
 
 Licensed under [MIT License](LICENSE).
+
