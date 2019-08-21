@@ -175,7 +175,7 @@ There is another activity that shows the detail information of individual servic
 </ol>
 <p>
   <b>
-9) Delivery method
+9) Delivery methods
     </b>
 </p>
 <ol>
@@ -185,7 +185,7 @@ I will use pathao to delvier the product primarily later i will add courier serv
 </ol>
 <p>
   <b>
-10) Payment method
+10) Payment methods
     </b>
 </p>
 <ol>
@@ -269,7 +269,9 @@ Kotlin is a statically typed programming language that runs on the JVM and is co
 </p>
 </ol>
 <p>
+  <b>
 3. IDE
+    </b>
 </p>
 <ol>
 <p>
