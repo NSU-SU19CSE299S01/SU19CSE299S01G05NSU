@@ -69,8 +69,8 @@ use the app to be self-dependent without any large investment.
 <p>
 Basically, earning by giving service using one’s skill and hobby.
 </p>
-<p>
-<center> <strong><u>Features</u></strong></center>
+<p align ="center">
+ <strong><u>Features</u></strong>
 </p>
 <p>
 1) Splash screen
@@ -199,8 +199,8 @@ This will show map with little style and colour.
 <p>
 <strong></strong>
 </p>
-<p>
-<center><strong><u>Technology</u></strong></center>
+<p align ="center">
+<u><strong>Technology</strong></u>
 </p>
 <p>
 1. Back-End
@@ -252,8 +252,8 @@ Kotlin is a statically typed programming language that runs on the JVM and is co
 - Android Studio
 </p>
 </ol>
-<p>
-<center><strong> <u>Monetization/Business plan</u></strong></center>
+<p align ="center">
+<strong> <u>Monetization/Business plan</u></strong>
 </p>
 <p>
 There will basically two payment methods there is cash on delivery and
@@ -267,8 +267,8 @@ I will promote third-party brands and products and charge them to place
 their offer/ logo in the app or send out a push notification. I will list
 other businesses and promote a specific business to the top of the list.
 </p>
-<p>
-<center><strong><u>Payment Methods</u></strong></center>
+<p align ="center">
+<strong><u>Payment Methods</u></strong>
 </p>
 <p>
 We will be using Bkash, Credit/Debit Cards as our basic payment methods for
