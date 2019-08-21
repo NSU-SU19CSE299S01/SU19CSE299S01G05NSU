@@ -37,11 +37,11 @@ Semester: Summer-19
 </body>
 
 ---
-<p>
+<p align ="center">
 <center><strong><u></u></strong> </center>
 </p>
-<p>
-<center><strong><u>Project details </u></strong></center>
+<p align ="center">
+  <center><strong><u><b>Project details</b> </u></strong></center>
 </p>
 <p>
 <u>Project idea:</u>
