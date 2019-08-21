@@ -78,7 +78,7 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
                              Bundle savedInstanceState) {
 
 
-        String[] servicesSpinner = {"Automotive", "Beauty", "computer", "creative", "Event", "Farm+garden", "Household", "labor", "travel/vac",
+        String[] servicesSpinner = {"Automotive", "Beauty", "computer", "creative", "Event", "Farm+garden", "Household", "labour", "travel/vac",
                 "other"};
 
         // List<serviceInfo>serviceInfos=new ArrayList<>();
