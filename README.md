@@ -275,7 +275,7 @@ We will be using Bkash, Credit/Debit Cards as our basic payment methods for
 any kind of transactions.
 </p>
 <p>
-<strong><u>References:</u></strong>
+<u><strong>References:</strong></u>
 </p>
 <p>
 1.https://codelabs.developers.google.com/
