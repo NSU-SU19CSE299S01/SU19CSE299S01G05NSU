@@ -41,7 +41,7 @@ Semester: Summer-19
   <ins><strong><u><b>Project details</b> </u></strong></ins>
 </p>
 <p>
-<ins><u>Project idea:</u></ins>
+<ins><b>Project idea:</b></ins>
 </p>
 <p>
 The project is about freelancing apps that’ll help unemployed people
@@ -72,8 +72,9 @@ Basically, earning by giving service using one’s skill and hobby.
 <p align ="center">
  <ins><strong><u>Features</u></strong></ins>
 </p>
-<p>
+<p><b>
 1) Splash screen
+  </b>
 </p>
 <ol>
 <p>
