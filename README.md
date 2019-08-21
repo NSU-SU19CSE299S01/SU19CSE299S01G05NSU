@@ -268,7 +268,7 @@ their offer/ logo in the app or send out a push notification. I will list
 other businesses and promote a specific business to the top of the list.
 </p>
 <p align ="center">
-<strong><u>Payment Methods</u></strong>
+<ins><strong><u>Payment Methods</u></strong></ins>
 </p>
 <p>
 We will be using Bkash, Credit/Debit Cards as our basic payment methods for
