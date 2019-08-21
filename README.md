@@ -285,7 +285,6 @@ any kind of transactions.
 2.https://firebase.google.com
 </p>
 
-<br/>
 </html>
 ---
 ## License & copyright
