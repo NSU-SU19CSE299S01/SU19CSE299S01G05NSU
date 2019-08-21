@@ -23,9 +23,9 @@ Semester: Summer-19
 
 <p align ="center"><b>Group No:</b>  05</p>
 
-<p align ="center"><b>Member</b></p>
+<p align ="center"><b><u>Member</u></b></p>
 
-<p align ="center"><b>Name:<b>Md. Jahid Hasan Naiem</b></p>
+<p align ="center"><b>Name:</b>Md. Jahid Hasan Naiem</p>
 
 <p align ="center"><b>ID:</b> 162-0266-042</p>
 
@@ -37,9 +37,6 @@ Semester: Summer-19
 
 
 ---
-<p align ="center">
-<center><strong><u></u></strong> </center>
-</p>
 <p align ="center">
   <center><strong><u><b>Project details</b> </u></strong></center>
 </p>
