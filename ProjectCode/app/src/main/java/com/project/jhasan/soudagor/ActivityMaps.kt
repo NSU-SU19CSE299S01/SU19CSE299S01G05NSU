@@ -130,7 +130,7 @@ class ActivityMaps : AppCompatActivity() {
                 intent.putExtra("keyAdd", address)
                 setResult(RESULT_OK, intent)
 
-                startActivityForResult(intent,1001)
+                finish()
 
             } else if (requestCode == 2) {
                 val latitude = data.getDoubleExtra(LATITUDE, 0.0)

@@ -2,9 +2,12 @@ package com.project.jhasan.soudagor;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,12 +28,15 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
@@ -38,6 +45,7 @@ import com.google.firebase.storage.UploadTask;
 import com.project.jhasan.fragments.AddServcie;
 import com.project.jhasan.fragments.serviceFeed;
 
+import java.io.IOException;
 import java.util.UUID;
 
 
@@ -96,7 +104,6 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 chooseImage();
-                uploadImage();
 
             }
         });
@@ -166,6 +173,16 @@ public class MainActivity extends AppCompatActivity
                                 @Override
                                 public void onSuccess(Uri uri) {
                                     downloadImageUrl = uri.toString();
+                                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                            .setPhotoUri(Uri.parse(downloadImageUrl)).build();
+                                    user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Log.d("User", "User profile updated.");
+                                            }
+                                        }
+                                    });
                                 }
                             });
                         }
@@ -196,6 +213,33 @@ public class MainActivity extends AppCompatActivity
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
+                && data != null && data.getData() != null) {
+            filepath = data.getData();
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                    .setPhotoUri(data.getData()).build();
+            user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Log.d("User", "User profile updated.");
+                    }
+                }
+            });
+            uploadImage();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filepath);
+                imgProfile.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void setSingleEvent(GridLayout mainGrid) {
@@ -295,8 +339,8 @@ public class MainActivity extends AppCompatActivity
 
         txtName.setText(NavName);
         txtEmail.setText(NavEmail);
-        if (downloadImageUrl!=null) {
-            imgProfile.setImageURI(Uri.parse(downloadImageUrl));
+        if (NavPhotoUrl!=null) {
+            Glide.with(this).load(NavPhotoUrl).into(imgProfile);
         }
 
 

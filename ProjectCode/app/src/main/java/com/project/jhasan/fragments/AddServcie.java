@@ -233,8 +233,6 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Bundle bundles = data.getExtras();
-
         Log.d(TAG, "onActivityResult called with " + data);
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
@@ -248,9 +246,10 @@ public class AddServcie extends Fragment implements AdapterView.OnItemSelectedLi
                 e.printStackTrace();
             }
         }
-        else if (requestCode == GET_MAP_DATA && resultCode == RESULT_OK && data != null && data.getData() != null){
+        else if (requestCode == GET_MAP_DATA && resultCode == RESULT_OK && data != null){
             filepath = data.getData();
-            String tempAddress = bundles.getString("keyAdd");
+            String tempAddress = data.getStringExtra("keyAdd");//bundles.getString("keyAdd");
+            Log.d(TAG, tempAddress);
             updateUI(tempAddress);
         }
     }
