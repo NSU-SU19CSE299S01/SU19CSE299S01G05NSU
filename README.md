@@ -29,17 +29,20 @@ Semester: Summer-19
 <p align="justify"><ins>The problem I am trying to solve</ins>: There are so many unemployed but skilled people where a large number are women. I am trying to convert a large number of skilled but unemployed, dependent people basically women into working and self-dependent women. Women won&rsquo;t be a burden anymore. People can earn with the help of their skill from home.</p>
 <p align="justify">The application will help unemployed people to be self-employed. They can use the app to be self-dependent without any large investment. Basically, earning by giving service using one&rsquo;s skill and hobby.</p>
 <h2 align="center"><ins><strong><u>Features</u></strong></ins></h2>
+</br>
+<p align="center"><img src="https://github.com/nsusas3/SU19CSE299S01G05NSU/blob/master/Mockup/vdo2.gif" width="150" height="250"/></p>
+</br>
 <p><strong> 1) Splash screen</strong></p>
 <p align="center"><img src="https://github.com/nsusas3/SU19CSE299S01G05NSU/blob/master/Mockup/Splash.png" width="150" height="250"/></p>
-<p>It is the welcome screen of the mobile app that the users will encounter while launching the application.In the app i have added self employed icon and the screen appear for some seconds on the screen then comes the main screen of the app.</p>
+<p align="justify">It is the welcome screen of the mobile app that the users will encounter while launching the application.In the app i have added self employed icon and the screen appear for some seconds on the screen then comes the main screen of the app.</p>
 <p><strong> 2) Individual profile (both for consumer and service provider). </strong></p>
 <p align="center"><img src="https://github.com/nsusas3/SU19CSE299S01G05NSU/blob/master/Mockup/User.png" width="350" height="250"/></p>
 <p align="justify">- <ins><u>Consumer Profile</u></ins>: In the profile information there will be Name, Email, and Photo of the user. The profile information will be shown in the navigation header. User can add profile pic from the header.</p>
 <p align="justify">- <ins><u>Service provider profile</u></ins>: same function as consumer profile.</p>
 <p><strong> 3) Navigation Drawer </strong></p>
 <p align="center"><img src="https://github.com/nsusas3/SU19CSE299S01G05NSU/blob/master/Mockup/Nav.png" width="150" height="250"/></p>
-<p align="justify">User can swipe from left to right on the mobile screen on tap the button on the title bar to open the navigation drawer.</p>
-<p align="justify">- The navigation drawer is a UI panel that shows your app's main navigation menu. The drawer appears when the user touches the drawer icon in the app bar or when the user swipes a finger from the left edge of the screen.</p>
+<p align="justify">User can swipe from left to right on the mobile screen on tap the button on the title bar to open the navigation drawer.</br>
+- The navigation drawer is a UI panel that shows your app's main navigation menu. The drawer appears when the user touches the drawer icon in the app bar or when the user swipes a finger from the left edge of the screen.</p>
 <p align="justify">- In the apps navigation drawer, there is a button /icon to logout from a logged user session.</p>
 <p><strong> 4) Navigation header </strong></p>
 <p align="center"><img src="https://github.com/nsusas3/SU19CSE299S01G05NSU/blob/master/Mockup/Head.png" width="350" height="200"/></p>
