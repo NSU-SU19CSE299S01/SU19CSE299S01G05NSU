@@ -38,10 +38,10 @@ Semester: Summer-19
 <p><strong> 2) Individual profile (both for consumer and service provider). </strong></p>
 <p align="center"><img src="https://github.com/nsusas3/SU19CSE299S01G05NSU/blob/master/Mockup/User.png" width="350" height="250"/></p>
 <p align="justify">- <ins><u>Consumer Profile</u></ins>: In the profile information there will be Name, Email, and Photo of the user. The profile information will be shown in the navigation header. User can add profile pic from the header.</p>
-<p align="justify">- <ins><u>Service provider profile</u></ins>: same function as consumer profile.</p>
+<p align="justify">- <ins><u>Service provider profile</u></ins>: In the profile information of service provider there will be Name, Email, and Photo of the user. The profile information will be shown in the navigation header. User can add profile pic from the header.</p>
 <p><strong> 3) Navigation Drawer </strong></p>
 <p align="center"><img src="https://github.com/nsusas3/SU19CSE299S01G05NSU/blob/master/Mockup/Nav.png" width="150" height="250"/></p>
-<p align="justify">User can swipe from left to right on the mobile screen on tap the button on the title bar to open the navigation drawer.</br>
+<p align="justify">User can swipe from left to right on the mobile screen or can tap the button on the title bar to open the navigation drawer.
 - The navigation drawer is a UI panel that shows your app's main navigation menu. The drawer appears when the user touches the drawer icon in the app bar or when the user swipes a finger from the left edge of the screen.</p>
 <p align="justify">- In the apps navigation drawer, there is a button /icon to logout from a logged user session.</p>
 <p><strong> 4) Navigation header </strong></p>
