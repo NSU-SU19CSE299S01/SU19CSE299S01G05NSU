@@ -41,12 +41,11 @@ Semester: Summer-19
 <p align="justify">- <ins><u>Service provider profile</u></ins>: In the profile information of service provider there will be Name, Email, and Photo of the user. The profile information will be shown in the navigation header. User can add profile pic from the header.</p>
 <p><strong> 3) Navigation Drawer </strong></p>
 <p align="center"><img src="https://github.com/nsusas3/SU19CSE299S01G05NSU/blob/master/Mockup/Nav.png" width="150" height="250"/></p>
-<p align="justify">User can swipe from left to right on the mobile screen or can tap the button on the title bar to open the navigation drawer.
-- The navigation drawer is a UI panel that shows your app's main navigation menu. The drawer appears when the user touches the drawer icon in the app bar or when the user swipes a finger from the left edge of the screen.</p>
+<p align="justify">User can swipe from left to right on the mobile screen or can tap the button on the title bar to open the navigation drawer. The navigation drawer is a UI panel that shows your app's main navigation menu. The drawer appears when the user touches the drawer icon in the app bar or when the user swipes a finger from the left edge of the screen.</p>
 <p align="justify">- In the apps navigation drawer, there is a button /icon to logout from a logged user session.</p>
 <p><strong> 4) Navigation header </strong></p>
 <p align="center"><img src="https://github.com/nsusas3/SU19CSE299S01G05NSU/blob/master/Mockup/Head.png" width="350" height="200"/></p>
-<palign="justify">This section is for profile information. The header will show user profile picture, Name and Email in a certain position.The user can also update the profile picture by clicking on the section profile picture.</p>
+<p align="justify">This section is for profile information. The header will show user profile picture, Name and Email in a certain position.The user can also update the profile picture by clicking on the section profile picture.</p>
 <p><strong> 5) Floating action button </strong></p>
 <p align="justify">This a floating button visible in the service feed screen and it is in below right corner.The button float on the screen. By click on the button, the app will launch add service screen and the user will be able to add service.</p>
 <p><strong> 6) Services category </strong></p>
